@@ -1,0 +1,16 @@
+relative-paths: true
+models:
+  - model1.npz
+  - model2.npz
+vocabs:
+  - vocab.eten.spm
+  - vocab.eten.spm
+beam-size: 6
+normalize: 1.0
+word-penalty: 0
+mini-batch: 16
+maxi-batch: 1000
+mini-batch-words: 500
+maxi-batch-sort: src
+workspace: 5000
+max-length-factor: 2.5
