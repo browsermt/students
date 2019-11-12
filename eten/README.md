@@ -44,7 +44,6 @@ Notes:
 |--------|----------:|--------------|-----------------|-----------|
 | teacher ensemble x2          | 2x 798MB | 27.5  | --     | 173s |
 | student tiny11, beam 1       |     65MB | 25.7  | 63-66s | 4.9s |
-| student mini11, beam 1       |     57MB | 25.1  | 56-57s | 4.5s |
 
 
 Notes:
