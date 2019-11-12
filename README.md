@@ -13,19 +13,23 @@ Teacher and student NMT models are described in subdirectories.
     documentation](https://marian-nmt.github.io/docs/#installation) to find
     which packages are needed on Ubuntu.
 
-2. Go to a subdirectory, download data and model files:
+2. Go to a subdirectory, download data and model files, e.g.:
 
         cd eten
         bash download-data.sh
         bash download-models.sh
 
-3. Go to a model directory and run scripts:
+    See _README_ file for more details.
 
-        cd eten.student.tiny11.corpus5b.corpus7.align
+3. Go to a model directory and run the evaluation script, e.g.:
+
+        cd eten.student.tiny11
         bash eval.sh -d 0       # -d 0 means use first GPU
-        bash speed.cpu.sh
+
+    or benchmarking scripts:
+
         bash speed.gpu.sh -d 0
-        bash align.sh           # generates alignment
+        bash speed.cpu.sh
 
     See individual scripts for details.
 
