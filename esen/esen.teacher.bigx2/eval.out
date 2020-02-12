@@ -1,0 +1,19 @@
+### Evaluating wmt13 es-en
+BLEU+case.mixed+lang.es-en+numrefs.1+smooth.exp+test.wmt13+tok.13a+version.1.4.3 = 36.9 66.5/42.6/30.0/21.8 (BP = 1.000 ratio = 1.021 hyp_len = 65885 ref_len = 64505)
+origlang=cs                     : sentences= 500 BLEU= 22.7
+origlang=de                     : sentences= 500 BLEU= 30.5
+origlang=en                     : sentences= 500 BLEU= 42.0
+origlang=es                     : sentences= 500 BLEU= 52.7
+origlang=fr                     : sentences= 500 BLEU= 40.8
+origlang=ru                     : sentences= 500 BLEU= 29.0
+### Evaluating wmt12 es-en
+BLEU+case.mixed+lang.es-en+numrefs.1+smooth.exp+test.wmt12+tok.13a+version.1.4.3 = 39.9 68.2/45.2/33.0/25.0 (BP = 1.000 ratio = 1.011 hyp_len = 73648 ref_len = 72812)
+origlang=cs                     : sentences= 646 BLEU= 19.9
+origlang=de                     : sentences= 611 BLEU= 23.4
+origlang=en                     : sentences= 604 BLEU= 59.9
+origlang=es                     : sentences= 596 BLEU= 53.0
+origlang=fr                     : sentences= 546 BLEU= 32.7
+### Evaluating UNv1.0.testset es-en
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.4.3 = 60.7 81.4/65.3/54.8/46.6 (BP = 1.000 ratio = 1.009 hyp_len = 120063 ref_len = 118945)
+### Evaluating IWSLT13.TED.tst2013 es-en
+BLEU+case.mixed+numrefs.1+smooth.exp+tok.13a+version.1.4.3 = 47.7 77.3/56.6/43.2/33.1 (BP = 0.955 ratio = 0.956 hyp_len = 24531 ref_len = 25669)

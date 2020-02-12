@@ -1,0 +1,14 @@
+relative-paths: true
+models:
+  - model1.npz
+  - model2.npz
+vocabs:
+  - vocab.esen.spm
+  - vocab.esen.spm
+beam-size: 6
+normalize: 1
+word-penalty: 0
+mini-batch: 16
+maxi-batch: 100
+maxi-batch-sort: src
+workspace: 4000
