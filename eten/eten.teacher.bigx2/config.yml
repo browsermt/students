@@ -5,7 +5,7 @@ models:
 vocabs:
   - vocab.eten.spm
   - vocab.eten.spm
-beam-size: 6
+beam-size: 4
 normalize: 1.0
 word-penalty: 0
 mini-batch: 16

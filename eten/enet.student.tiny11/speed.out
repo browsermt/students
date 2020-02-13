@@ -1,0 +1,9 @@
+### Translating wmt18 en-et on GPU
+[2020-02-13 08:56:30] Total time: 3.03437s wall
+BLEU+case.mixed+lang.en-et+numrefs.1+smooth.exp+test.wmt18+tok.13a+version.1.4.1 = 25.7 59.6/32.3/19.8/12.7 (BP = 0.974 ratio = 0.974 hyp_len = 35338 ref_len = 36269)
+### Translating wmt18 en-et on CPU
+[2020-02-13 09:02:44] Total time: 59.27079s wall
+BLEU+case.mixed+lang.en-et+numrefs.1+smooth.exp+test.wmt18+tok.13a+version.1.4.3 = 25.7 59.4/32.1/19.7/12.6 (BP = 0.979 ratio = 0.979 hyp_len = 35505 ref_len = 36269)
+### Translating wmt18 en-et on CPU, 8-bit packed model
+[2020-02-13 09:03:23] Total time: 34.90539s wall
+BLEU+case.mixed+lang.en-et+numrefs.1+smooth.exp+test.wmt18+tok.13a+version.1.4.3 = 25.6 59.4/32.1/19.6/12.6 (BP = 0.977 ratio = 0.977 hyp_len = 35430 ref_len = 36269)

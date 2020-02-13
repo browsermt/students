@@ -1,6 +1,6 @@
 # Estonian-English NMT systems
 
-Teacher and students models for Estonian.
+Teacher and student models for Estonian.
 
 
 ## Teachers
@@ -34,30 +34,30 @@ Notes:
 
 | system | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
 |--------|----------:|--------------|-----------------|-----------|
-| teacher ensemble x2          | 2x 798MB | 34.6  | --     | 153s |
-| student tiny11, beam 1       |     65MB | 31.9  | 58-63s | 4.9s |
+| teacher ensemble x2, beam 4         | 2x 798MB | 34.7  | --  | 110s |
+| student tiny11, beam 1              |     65MB | 31.9  | 37s | 2.3s |
+| student tiny11, beam 1, packed8avx2 |     46MB | 31.4  | 33s | --   |
 
 
 ### English-Estonian
 
 | system | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
 |--------|----------:|--------------|-----------------|-----------|
-| teacher ensemble x2          | 2x 798MB | 27.5  | --     | 173s |
-| student tiny11, beam 1       |     65MB | 25.7  | 63-66s | 4.9s |
+| teacher ensemble x2, beam 4         | 2x 798MB | 27.5  | --  | 116s |
+| student tiny11, beam 1              |     65MB | 25.7  | 59s | 3.0s |
+| student tiny11, beam 1, packed8avx2 |     46MB | 25.6  | 34s | --   |
 
 
 Notes:
 
-* Students have smaller transformer architecture: 256 emb., 1536 FFN, 6-layer
-  encoder, 2-layer decoder with SSRU units (tiny11).
-* Trained with guided alignments.
+* Students are tiny transformers: 256 emb., 1536 FFN, 6-layer encoder, 2-layer
+  decoder (not tied) with SSRU units (tiny11).
+* Trained on teacher-generated parallel data, back- and forward-translations,
+  with guided alignments.
 * Evaluated on newstest2018, which consists of 2,000 sentences (ca. 40k English
   tokens and 30k Estonian tokens).
-* Run with the current public marian-dev v1.8.7, which **does not include all
-  optimizations from the WNGT 2019 shared task** (e.g. FBGEMM and pruned beam
-  search will be released in v1.9.0), so translation times will improve.
-  * CPU: Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.40GHz, single thread, mini-batch 32, beam size 1
+* Tested with marian-dev v1.8.40 compiled with FBGEMM (on elli):
+  * CPU: Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.10GHz (avx2), single thread,
+    mini-batch 32, beam size 1, lexical shortlist
   * GPU: GeForce GTX 1080 Ti, mini-batch 64, beam size 1
-* The models were not quantized yet.
-* Students use lexical shortlists, which will be pruned and binarized.
 

@@ -1,6 +1,6 @@
-#!/bin/bash -v
+#!/bin/bash
 
-MARIAN=/fs/snotra0/romang/work/bergamot//marian-dev/build
+MARIAN=../../marian-dev/build
 
 SRC=en
 TRG=et
