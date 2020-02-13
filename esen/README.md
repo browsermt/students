@@ -5,7 +5,6 @@ Teacher and student models for Spanish.
 
 ## Teachers
 
-
 _newstest2013_, cased BLEU
 
 | system | en-es | es-en | comment |

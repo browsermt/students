@@ -30,6 +30,7 @@ Teacher and student NMT models are described in subdirectories.
 
         bash speed.gpu.sh -d 0
         bash speed.cpu.sh
+        bash speed.cpu.packed8.sh   # requires CPU with avx2
 
     See individual scripts for details.
 

@@ -6,3 +6,7 @@
 *.spm
 *.s2t
 *.gz
+
+*.bin
+eval/
+speed/
