@@ -13,12 +13,12 @@ sacrebleu -t wmt13 -l $SRC-$TRG --echo src > speed/newstest2013.$SRC
 
 test -e model.bin || $MARIAN/marian-conv -f model.npz -t model.bin --gemm-type packed8avx2
 
-echo "### Translating wmt13 $SRC-$TRG on CPU"
+echo "### Translating wmt13 $SRC-$TRG on CPU, 8-bit packed model"
 $MARIAN/marian-decoder $@ \
     --relative-paths -m model.bin -v vocab.$SRC$TRG.spm vocab.$SRC$TRG.spm \
     -i speed/newstest2013.$SRC -o speed/cpu.newstest2013.packed8.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-    --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+    --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
     --quiet --quiet-translation --log speed/cpu.newstest2013.packed8.log
 
 tail -n1 speed/cpu.newstest2013.packed8.log

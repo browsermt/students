@@ -15,9 +15,9 @@ _newstest2013_, cased BLEU
 | transformer-base              | 31.2 | 33.4 |
 | transformer-base, filtering   | 34.5 | 35.4 |
 ||||
-| transformer-big, sBT          | 36.3 | 37.0 | 
-| transformer-big, sBT+BT       | 36.5 | -    | 
-| transformer-big, sBT+FT       | -    | 36.5 | 
+| transformer-big, sBT          | 36.3 | 37.0 |
+| transformer-big, sBT+BT       | 36.5 | -    |
+| transformer-big, sBT+FT       | -    | 36.5 |
 | - ensemble x2 (teacher)       | 36.5 | 37.0 | small improvements on WMT12, TED13 & UNv1
 
 
@@ -38,8 +38,8 @@ Notes:
 | system | size (MB) | BLEU | CPU (sec) | GPU (sec) |
 |--------|----------:|------|-----------|-----------|
 | teacher ensemble x2, beam 6         | 2x 798MB | 36.9 | --  | 166s |
-| student tiny11, beam 1              |     65MB | 35.7 | 78s | 3.7s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 35.5 | 47s | --   |
+| student tiny11, beam 1              |     65MB | 35.7 | 81s | 3.7s |
+| student tiny11, beam 1, packed8avx2 |     46MB | 35.5 | 48s | --   |
 
 
 ### English-Spanish
@@ -59,3 +59,4 @@ Notes:
   * CPU: Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.10GHz (avx2), single thread,
     mini-batch 32, beam size 1, lexical shortlist
   * GPU: GeForce GTX 1080 Ti, mini-batch 64, beam size 1
+
