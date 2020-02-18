@@ -44,8 +44,8 @@ Notes:
 | system | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
 |--------|----------:|--------------|-----------------|-----------|
 | teacher ensemble x2, beam 4         | 2x 798MB | 27.5  | --  | 116s |
-| student tiny11, beam 1              |     65MB | 25.7  | 59s | 3.0s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 25.6  | 34s | --   |
+| student tiny11, beam 1              |     65MB | 25.7  | 39s | 3.0s |
+| student tiny11, beam 1, packed8avx2 |     46MB | 25.6  | 37s | --   |
 
 
 Notes:
