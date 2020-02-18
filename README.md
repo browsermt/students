@@ -1,6 +1,12 @@
 # NMT models for Bergamot
 
-Teacher and student NMT models are described in subdirectories.
+Teacher and student NMT models are described in subdirectories. We have
+prepared models for the following language pairs:
+
+- Estonian-English
+- English-Estonian
+- Spanish-English
+- English-Spanish
 
 
 ## Instructions
