@@ -36,14 +36,18 @@ Notes:
 
 | system | size (MB) | BLEU | CPU (sec) | GPU (sec) |
 |--------|----------:|------|-----------|-----------|
-| teacher ensemble x2, beam 6         | 2x 798MB | 36.9 | --  | 166s |
-| student tiny11, beam 1              |     65MB | 35.7 | 81s | 3.7s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 35.5 | 48s | --   |
+| teacher ensemble x2, beam 4         | 2x 798MB | 36.9 | --  | 123s |
+| student tiny11, beam 1              |     65MB | 35.7 | 45s | 3.6s |
+| student tiny11, beam 1, packed8avx2 |     46MB | 35.5 | 43s | --   |
 
 
 ### English-Spanish
 
-In progress...
+| system | size (MB) | BLEU | CPU (sec) | GPU (sec) |
+|--------|----------:|------|-----------|-----------|
+| teacher ensemble x2, beam 4         | 2x 798MB | 36.5 | --  | 126s |
+| student tiny11, beam 1              |     65MB | 35.2 | 44s | 3.7s |
+| student tiny11, beam 1, packed8avx2 |     46MB | 34.5 | 41s | --   |
 
 
 Notes:

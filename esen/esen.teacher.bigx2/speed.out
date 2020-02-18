@@ -1,0 +1,3 @@
+### Translating wmt13 es-en on GPU
+[2020-02-18 13:46:55] Total time: 123.78090s wall
+BLEU+case.mixed+lang.es-en+numrefs.1+smooth.exp+test.wmt13+tok.13a+version.1.4.3 = 36.9 66.5/42.6/30.0/21.8 (BP = 1.000 ratio = 1.021 hyp_len = 65830 ref_len = 64505)

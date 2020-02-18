@@ -2,8 +2,8 @@
 
 MARIAN=../../marian-dev/build
 
-SRC=es
-TRG=en
+SRC=en
+TRG=es
 
 mkdir -p speed
 
@@ -11,7 +11,7 @@ sacrebleu -t wmt13 -l $SRC-$TRG --echo src > speed/newstest2013.$SRC
 
 echo "### Translating wmt13 $SRC-$TRG on CPU"
 $MARIAN/marian-decoder $@ \
-    --relative-paths -m model.npz -v vocab.$SRC$TRG.spm vocab.$SRC$TRG.spm \
+    --relative-paths -m model.npz -v vocab.esen.spm vocab.esen.spm \
     -i speed/newstest2013.$SRC -o speed/cpu.newstest2013.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
     --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
