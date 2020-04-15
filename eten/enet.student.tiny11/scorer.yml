@@ -1,0 +1,9 @@
+relative-paths: true
+model: model.npz
+vocabs:
+  - vocab.eten.spm
+  - vocab.eten.spm
+mini-batch: 64
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 2000
