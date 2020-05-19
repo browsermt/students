@@ -17,7 +17,8 @@ _newstest2016-2019_, cased BLEU
 Notes:
 
 * We used the sentence-level English-German system from Microsoft’s constrained
-  submission to the WMT’19 News Translation Task as a teacher system.
+  submission to the WMT’19 News Translation Task as a teacher system
+  ([Junczys-Dowmunt, 2019](https://www.aclweb.org/anthology/W19-5321.pdf)).
   It is the (4×c) configuration in Table 2 from the original paper.
 * BLEU scores for German newstest2019 from sacreBLEU, e.g.:
   BLEU+case.mixed+lang.en-de+numrefs.1+smooth.exp+test.wmt19+tok.13a+version.1.4.7
