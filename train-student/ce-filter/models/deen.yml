@@ -1,0 +1,11 @@
+relative-paths: false
+model: /path/to/deen/model.npz
+vocabs:
+  - /path/to/deen/vocab.spm
+  - /path/to/deen/vocab.spm
+mini-batch: 32
+mini-batch-words: 1500
+maxi-batch: 100
+workspace: 6000
+max-length: 250
+max-length-crop: true

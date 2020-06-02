@@ -1,0 +1,17 @@
+relative-paths: true
+models:
+  - ../../esen/enes.teacher.bigx2/model1.npz
+  - ../../esen/enes.teacher.bigx2/model2.npz
+vocabs:
+  - ../../esen/enes.teacher.bigx2/vocab.esen.spm
+  - ../../esen/enes.teacher.bigx2/vocab.esen.spm
+beam-size: 8
+normalize: 1.0
+word-penalty: 0
+mini-batch: 16
+mini-batch-words: 2000
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 8000
+max-length: 200
+max-length-crop: true
