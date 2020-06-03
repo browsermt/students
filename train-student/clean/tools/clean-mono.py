@@ -28,8 +28,9 @@ def main():
             continue
 
         skip = clean_mono(src, args.lang)
-        if args.debug and skip:
-            sys.stderr.write("{}\t{}\n".format(skip, src))
+        if skip:
+            if args.debug:
+                sys.stderr.write("{}\t{}\n".format(skip, src))
             continue
         sys.stdout.write("{}\n".format(src))
 

@@ -36,8 +36,9 @@ def main():
         trg = fields[-1].strip()
 
         skip = clean_parallel(src, trg, args.src_lang, args.trg_lang)
-        if args.debug and skip:
-            sys.stderr.write("{}\t{}".format(skip, line))
+        if skip:
+            if args.debug:
+                sys.stderr.write("{}\t{}".format(skip, line))
             continue
         sys.stdout.write(line)
 
