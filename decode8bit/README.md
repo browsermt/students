@@ -14,7 +14,7 @@ This document will guide you through the process of taking a trained model, conv
 
 	`python3 $MARIAN/scripts/simulate-compression.py -i model.npz.best-bleu-detok.npz -b 8 --fixed_point -o model-finetune.npz`
 
-	- Take the training script that you used for producing the student and add the following switches to the marian command: `--compress-bit 8 --compress-skip-bias`. Example is shown in `run.me.finetune.example.sh`
+	- Take the training script that you used for producing the student and add the following switches to the marian command: `--compress-bit 8 --compress-skip-bias`. Example is shown in `run.me.finetune.example.sh`. Finetuning is **really** fast. The model's quality is going to start going down after a few thousand mini-batches. Make sure you have frequent validations so that you don't miss the sweet spot!
 
 3. Compile the relevant marian branch: https://github.com/marian-nmt/marian-dev/tree/intgemm_reintegrated_computestats
 
