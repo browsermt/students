@@ -18,7 +18,7 @@ This document will guide you through the process of taking a trained model, conv
 
 3. Compile the relevant marian branch: https://github.com/marian-nmt/marian-dev/tree/intgemm_reintegrated_computestats
 
-4. Decode a sample test set in order to get typical quantization values. The relevant switches here is `--dump-quantmult`. A typical marian command would look like this:
+4. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
 ```bash
 $MARIAN/marian-decoder \
             --relative-paths -m model-finetune.npz.best-bleu-detok.npz -v vocab.spm vocab.spm --optimize8 --intgemm-shifted --intgemm-shifted-all --dump-quantmult \
