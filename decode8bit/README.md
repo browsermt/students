@@ -36,7 +36,7 @@ $MARIAN/marian-conv -f model-finetune.npz.best-bleu-detok.alphas.npz -t model-fi
 ```
 Note, that you can fine tune the quantization procedure inside `extract_stats.py:53` By changing the hardcoded `+1.1*STDDEV` value. Anything from -1 to +2 seems to work to varying degrees.
 
-In very rare cases, the `extract_stats.py` script might crash. If this happens, the most likely culprit is `tcmalloc`. If the model is too large (or the workspace too small), `tcmalloc` will spit $tcmalloc: large alloc...$ to stderr which our script doesn't know how to handle. Just delete that line inside the `quantmuls` file and you're good to go.
+In very rare cases, the `extract_stats.py` script might crash. If this happens, the most likely culprit is `tcmalloc`. If the model is too large (or the workspace too small), `tcmalloc` will spit *tcmalloc: large alloc...* to stderr which our script doesn't know how to handle. Just delete that line inside the `quantmuls` file and you're good to go.
 
 **IMPORTANT** CPU threads must be set to 1 for this step.
 
