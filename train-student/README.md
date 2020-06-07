@@ -37,6 +37,11 @@ Note: This step can be replaced with your own data preprocessing.
 - Adjust variables in `clean/tools/clean-*.py` for your language pair if needed.
 - Run `clean/clean-.sh`.
 
+It is recommended to check the generated debug file what sentences were removed,
+adjust parameters in `clean/tools/clean-*.py` and rerun if needed.
+Rule-based filtering can be skipped if CE filtering is used later.
+TODO: set parameters that works on most datasets removing worst data only.
+
 ### 2. Generating distilled data for student training
 
 Scripts work with a teacher trained with Marian using SentencePiece as the only
