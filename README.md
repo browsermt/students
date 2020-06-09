@@ -7,6 +7,7 @@ prepared models for the following language pairs:
 - English-Estonian
 - Spanish-English
 - English-Spanish
+- English-German
 
 
 ## Instructions
