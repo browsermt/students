@@ -29,13 +29,17 @@ Notes:
 
 ### English-German
 
-| system | size (MB) | BLEU | CPU (sec) | GPU (sec) |
-|--------|----------:|------|-----------|-----------|
-| teacher ensemble x4, beam 4         | 4x 1.5GB | 42.5 | --   | ~400s |
-| student base, beam 1                |    149MB | 42.5 | 83.5 | 3.5s |
-| student base, beam 1, packed8avx2   |     46MB | 42.5 | 74.2 | --   |
-| student tiny11, beam 1              |     65MB | 42.1 | 34.8 | 2.9s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 42.1 | 32.6 | --   |
+| system                                   | size (MB) | BLEU | CPU (sec) | GPU (sec) |
+|------------------------------------------|----------:|------|-----------|-----------|
+| teacher ensemble x4, beam 4              | 4x 1.5GB | 42.5 | --   | ~400s |
+| student base, beam 1                     |    149MB | 42.5 | 48.1 | 3.5s |
+| student base, beam 1, packed8avx512      |     46MB | 42.5 | 31.9 | --   |
+| student base, beam 1, intgemm8           |     38MB | 42.4 | 25.0 | --   |
+| student base, beam 1, intgemm8alphas     |     38MB | 42.5 | 23.0 | --   |
+| student tiny11, beam 1                   |     65MB | 42.1 | 20.0 | 2.9s |
+| student tiny11, beam 1, packed8avx512    |     46MB | 41.8 | 15.2 | --   |
+| student tiny11, beam 1, intgemm8         |     17MB | 41.7 | 13.0 | --   |
+| student tiny11, beam 1, intgemm8alphas   |     17MB | 41.8 | 12.3 | --   |
 
 
 Notes:
@@ -48,7 +52,8 @@ Notes:
   alignments.
 * Evaluated on newstest2019, which consists of 1,997 sentences.
 * Tested with marian-dev v1.9.10 compiled with FBGEMM (on elli):
-  * CPU: Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.10GHz (avx2), single thread,
-    mini-batch 32, beam size 1, lexical shortlist
   * GPU: GeForce GTX 1080 Ti, mini-batch 64, beam size 1
+* Tested with marian-dev branch intgemm-reintegrated-computestats compiled with FBGEMM (on var):
+  * CPU: Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz (avx512vnni), single thread,
+    mini-batch 32, beam size 1, lexical shortlist
 
