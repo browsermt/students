@@ -34,20 +34,24 @@ Notes:
 
 ### Spanish-English
 
-| system | size (MB) | BLEU | CPU (sec) | GPU (sec) |
-|--------|----------:|------|-----------|-----------|
-| teacher ensemble x2, beam 4         | 2x 798MB | 36.9 | --  | 123s |
-| student tiny11, beam 1              |     65MB | 35.7 | 45s | 3.6s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 35.5 | 43s | --   |
+| system                                   | size (MB) | BLEU | CPU (sec) | GPU (sec) |
+|------------------------------------------|- --------:|------|-----------|-----------|
+| teacher ensemble x2, beam 4              | 2x 798MB | 36.9 | --  | 123s |
+| student tiny11, beam 1                   |     65MB | 35.7 | 25s | 3.6s |
+| student tiny11, beam 1, packed8avx512    |     46MB | 35.6 | 19s | --   |
+| student tiny11, beam 1, intgemm8         |     17MB | 35.2 | 17s | --   |
+| student tiny11, beam 1, intgemm8alphas   |     17MB | 35.3 | 16s | --   |
 
 
 ### English-Spanish
 
-| system | size (MB) | BLEU | CPU (sec) | GPU (sec) |
-|--------|----------:|------|-----------|-----------|
-| teacher ensemble x2, beam 4         | 2x 798MB | 36.5 | --  | 126s |
-| student tiny11, beam 1              |     65MB | 35.2 | 44s | 3.7s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 34.5 | 41s | --   |
+| system                                   | size (MB) | BLEU | CPU (sec) | GPU (sec) |
+|------------------------------------------| ---------:|------|-----------|-----------|
+| teacher ensemble x2, beam 4              | 2x 798MB | 36.5 | --  | 126s |
+| student tiny11, beam 1                   |     65MB | 35.1 | 24s | 3.7s |
+| student tiny11, beam 1, packed8avx512    |     46MB | 34.9 | 18s | --   |
+| student tiny11, beam 1, intgemm8         |     17MB | 34.8 | 16s | --   |
+| student tiny11, beam 1, intgemm8alphas   |     17MB | 35.0 | 15s | --   |
 
 
 Notes:
@@ -59,7 +63,7 @@ Notes:
 * Evaluated on newstest2013, which consists of 3,000 sentences (ca. 62k Spanish
   tokens and 56k English tokens).
 * Tested with marian-dev v1.8.40 compiled with FBGEMM (on elli):
-  * CPU: Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.10GHz (avx2), single thread,
-    mini-batch 32, beam size 1, lexical shortlist
   * GPU: GeForce GTX 1080 Ti, mini-batch 64, beam size 1
-
+* Tested with marian-dev branch intgemm-reintegrated-computestats compiled with FBGEMM (on var):
+  * CPU: Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz (avx512vnni), single thread,
+    mini-batch 32, beam size 1, lexical shortlist
