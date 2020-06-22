@@ -32,21 +32,25 @@ Notes:
 
 ### Estonian-English
 
-| system | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
-|--------|----------:|--------------|-----------------|-----------|
-| teacher ensemble x2, beam 4         | 2x 798MB | 34.7  | --  | 110s |
-| student tiny11, beam 1              |     65MB | 31.9  | 37s | 2.3s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 31.4  | 33s | --   |
+| system                                   | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
+|------------------------------------------|----------:|--------------|-----------------|-----------|
+| teacher ensemble x2, beam 4              | 2x 798MB | 34.7  | --  | 110s |
+| student tiny11, beam 1                   |     65MB | 31.8  | 18s | 2.3s |
+| student tiny11, beam 1, packed8avx512    |     46MB | 31.4  | 13s | --   |
+| student tiny11, beam 1, intgemm8         |     17MB | 31.0  | 12s | --   |
+| student tiny11, beam 1, intgemm8alphas   |     17MB | 30.8  | 11s | --   |
+
 
 
 ### English-Estonian
 
-| system | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
-|--------|----------:|--------------|-----------------|-----------|
-| teacher ensemble x2, beam 4         | 2x 798MB | 27.5  | --  | 116s |
-| student tiny11, beam 1              |     65MB | 25.7  | 39s | 3.0s |
-| student tiny11, beam 1, packed8avx2 |     46MB | 25.6  | 37s | --   |
-
+| system                                   | size (MB) | wmt18 (BLEU) | speed CPU (sec) | speed GPU |
+|------------------------------------------|----------:|--------------|-----------------|-----------|
+| teacher ensemble x2, beam 4              | 2x 798MB | 27.5  | --  | 116s |
+| student tiny11, beam 1                   |     65MB | 25.7  | 18s | 3.0s |
+| student tiny11, beam 1, packed8avx512    |     46MB | 25.5  | 14s | --   |
+| student tiny11, beam 1, intgemm8         |     17MB | 25.4  | 12s | --   |
+| student tiny11, beam 1, intgemm8alphas   |     17MB | 25.1  | 11s | --   |
 
 Notes:
 
@@ -57,7 +61,7 @@ Notes:
 * Evaluated on newstest2018, which consists of 2,000 sentences (ca. 40k English
   tokens and 30k Estonian tokens).
 * Tested with marian-dev v1.8.40 compiled with FBGEMM (on elli):
-  * CPU: Intel(R) Xeon(R) CPU E5-2620 v3 @ 2.10GHz (avx2), single thread,
-    mini-batch 32, beam size 1, lexical shortlist
   * GPU: GeForce GTX 1080 Ti, mini-batch 64, beam size 1
-
+* Tested with marian-dev branch intgemm-reintegrated-computestats compiled with FBGEMM (on var):
+  * CPU: Intel(R) Xeon(R) Gold 6248 CPU @ 2.50GHz (avx512vnni), single thread,
+    mini-batch 32, beam size 1, lexical shortlist
