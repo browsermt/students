@@ -9,6 +9,8 @@ mkdir -p speed
 
 ~/.local/bin/sacrebleu -t wmt13 -l $SRC-$TRG --echo src > speed/newstest2013.$SRC
 
+if [ ! -f model.intgemm.alphas.bin ]; then
+
 test -e model.alphas.npz || $MARIAN/marian-decoder $@ \
     --relative-paths -m model.npz -v vocab.esen.spm vocab.esen.spm \
     -i speed/newstest2013.$SRC -o speed/cpu.newstest2013.$TRG \
@@ -19,6 +21,8 @@ test -e model.alphas.npz || $MARIAN/marian-decoder $@ \
 test -e model.alphas.npz || $MARIAN/../scripts/alphas/extract_stats.py quantmults model.npz model.alphas.npz
 
 test -e model.intgemm.alphas.bin || $MARIAN/marian-conv -f model.alphas.npz -t model.intgemm.alphas.bin --gemm-type intgemm8
+
+fi
 
 echo "### Translating wmt13 $SRC-$TRG on CPU"
 $MARIAN/marian-decoder $@ \
