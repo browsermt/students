@@ -33,7 +33,7 @@ Notes:
 |------------------------------------------|----------:|------|-----------|-----------|
 | teacher ensemble x4, beam 4              | 4x 1.5GB | 42.5 | --   | ~400s |
 | student base, beam 1                     |    149MB | 42.5 | 48.1 | 3.5s |
-| student base, beam 1, packed8avx512      |     46MB | 42.5 | 31.9 | --   |
+| student base, beam 1, packed8avx512      |     85MB | 42.5 | 31.9 | --   |
 | student base, beam 1, intgemm8           |     38MB | 42.4 | 25.0 | --   |
 | student base, beam 1, intgemm8alphas     |     38MB | 42.5 | 23.0 | --   |
 | student tiny11, beam 1                   |     65MB | 42.1 | 20.0 | 2.9s |
