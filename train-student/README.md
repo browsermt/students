@@ -18,12 +18,13 @@ resources, etc.  Open, read, and update a script before using it.
 
 ## Overview
 
-There are four main steps:
+There are four main steps and one optional step:
 
 1. Preparing parallel and monolingual data (optional).
 2. Generating distilled data for student training.
 3. Training word alignment and lexical shortlists (recommended).
 4. Training a student model.
+5. Quantize the resulting student model (optional).
 
 
 ## Instructions
