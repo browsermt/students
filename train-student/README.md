@@ -128,6 +128,6 @@ $MARIAN/marian-decoder \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt$i.log
 ```
 
-The relevant intgemm switches are: `--optimize8 --intgemm-shifted --intgemm-shifted-all --use-precomputed-alphas`. You can use as many threads as you want in this setting. The script `run.me.quantize.example.sh` does steps 4-6.
+The relevant intgemm switches are: `--optimize8 --intgemm-shifted --intgemm-shifted-all --use-precomputed-alphas`. You can use as many threads as you want in this setting. The script https://github.com/browsermt/students/blob/master/deen/ende.student.base/speed.cpu.intgemm8bitalpha.sh does steps 4-6 using en-de as the student model.
 
 
