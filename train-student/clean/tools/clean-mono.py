@@ -12,6 +12,7 @@ RATIO_ALPHA_WORDS = 0.4  # minimum fraction of "real" words in a sentence
 RATIO_ALPHA_CHARS = 0.5  # minimum fraction of alpha characters in a sentence
 
 CHARS = {
+    'cs': r'[a-zÁáČčĎďÉéěÍíŇňÓóŘřŠšŤťÚúůÝýŽž]',
     'en': r'[a-z]',
     'es': r'[a-zÁáÉéÍíÓóÚúñÑ]',
     'et': r'[a-zÕõÄäÖöÜü]',
