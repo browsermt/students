@@ -22,7 +22,42 @@ def main():
         score_function = compute_chrf
     else:
         sys.stderr.write('Unrecognized metric: {}\n'.format(args.metric))
+        pass
 
+    if args.toolkit == 'marian':
+        marian_best_bleu(args, score_function)
+    elif args.toolkit == 't2t':
+        t2t_best_bleu(args, score_function)
+        pass
+
+    return
+
+def t2t_best_bleu(args, score_function):
+    for i, ref_line in enumerate(args.references):
+        refs = ref_line.strip().split("\n")
+        if args.debpe:
+            refs = [re.sub(r'@@ +', '', r) for r in refs]
+            pass
+        texts = next(args.nbest).strip().split('\t')
+        if args.debpe:
+            texts = [re.sub(r'@@ +', '', t) for t in texts]
+            pass
+        refs = [r.split() for r in refs]
+        scores = [score_function(refs, t.split()) for t in texts]
+        best_txt = texts[scores.index(max(scores))]
+
+        args.output.write("{}\n".format(best_txt))
+        if args.debug:
+            sys.stderr.write("{}: {}\n".format(i, scores))
+            pass
+        if i % 100000 == 0 and i > 0:
+            sys.stderr.write("[{}]\n".format(i))
+            pass
+        pass
+    return
+
+
+def marian_best_bleu(args,score_function):
     prev_line = None
     for i, ref_line in enumerate(args.references):
         refs = ref_line.strip().split("\n")
@@ -133,6 +168,8 @@ def parse_args():
     parser.add_argument("-m", "--metric", default='bleu')
     parser.add_argument("--debpe", action='store_true')
     parser.add_argument("-d", "--debug", action='store_true')
+    parser.add_argument("-t", "--toolkit", default='marian',
+                        help="Toolkit: 'marian' or 't2t'")
     return parser.parse_args()
 
 
