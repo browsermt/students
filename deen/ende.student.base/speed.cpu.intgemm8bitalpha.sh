@@ -16,7 +16,7 @@ test -e model.alphas.npz || $MARIAN/marian-decoder $@ \
     -i speed/newstest2019.$SRC -o speed/cpu.newstest2019.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
     --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
-    --quiet --quiet-translation --log speed/cpu.newstest2019.log --optimize8 --intgemm-shifted --intgemm-shifted-all --dump-quantmult  2> quantmults
+    --quiet --quiet-translation --log speed/cpu.newstest2019.log --dump-quantmult  2> quantmults
 
 test -e model.alphas.npz || $MARIAN/../scripts/alphas/extract_stats.py quantmults model.npz model.alphas.npz
 
@@ -29,7 +29,7 @@ $MARIAN/marian-decoder $@ \
     -i speed/newstest2019.$SRC -o speed/cpu.newstest2019.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
     --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
-    --quiet --quiet-translation --log speed/cpu.newstest2019.log --optimize8 --intgemm-shifted --intgemm-shifted-all --use-precomputed-alphas
+    --quiet --quiet-translation --log speed/cpu.newstest2019.log --int8shiftAlphaAll
 
 tail -n1 speed/cpu.newstest2019.log
 ~/.local/bin/sacrebleu -t wmt19 -l $SRC-$TRG < speed/cpu.newstest2019.$TRG | tee speed/cpu.newstest2019.$TRG.bleu

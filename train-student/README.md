@@ -98,7 +98,7 @@ In order to deliver fast performance on user hardware, we need to quantize our m
 4. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
 ```bash
 $MARIAN/marian-decoder \
-            --relative-paths -m model-finetune.npz.best-bleu-detok.npz -v vocab.spm vocab.spm --optimize8 --intgemm-shifted --intgemm-shifted-all --dump-quantmult \
+            --relative-paths -m model-finetune.npz.best-bleu-detok.npz -v vocab.spm vocab.spm --dump-quantmult \
             -i speed_intgemm/input.en -o speed_intgemm/output.de \
             --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
             --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
@@ -121,13 +121,13 @@ In very rare cases, the `extract_stats.py` script might crash. If this happens, 
 
 ```bash
 $MARIAN/marian-decoder \
-            --relative-paths -m model-finetune.intgemm.alphas.bin -v vocab.spm vocab.spm --optimize8 --intgemm-shifted --intgemm-shifted-all --use-precomputed-alphas \
+            --relative-paths -m model-finetune.intgemm.alphas.bin -v vocab.spm vocab.spm --int8shiftAlphaAll \
             -i speed_intgemm/input.en -o speed_intgemm/output.de  \
             --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
             --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt$i.log
 ```
 
-The relevant intgemm switches are: `--optimize8 --intgemm-shifted --intgemm-shifted-all --use-precomputed-alphas`. You can use as many threads as you want in this setting. The script https://github.com/browsermt/students/blob/master/deen/ende.student.base/speed.cpu.intgemm8bitalpha.sh does steps 4-6 using en-de as the student model.
+The relevant intgemm switch is: `--int8shiftAlphaAll`. You can use as many threads as you want in this setting. The script https://github.com/browsermt/students/blob/master/deen/ende.student.base/speed.cpu.intgemm8bitalpha.sh does steps 4-6 using en-de as the student model.
 
 
