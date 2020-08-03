@@ -1,6 +1,6 @@
 relative-paths: true
 models:
-  - model.npz
+  - model.intgemm.alphas.bin
 vocabs:
   - vocab.eten.spm
   - vocab.eten.spm
@@ -13,3 +13,4 @@ maxi-batch-sort: src
 workspace: 2000
 max-length-factor: 2.0
 skip-cost: true
+gemm-precision: int8shiftAlphaAll
