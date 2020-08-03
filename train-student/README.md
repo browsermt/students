@@ -104,7 +104,7 @@ $MARIAN/marian-decoder \
             --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt16.log 2> quantmults
 ```
-Furthermore `--optimize8 --intgemm-shifted --intgemm-shifted-all` are the relevant switches to get the fastest intgemm decoding.
+Furthermore `--int8shiftAlphaAll` is the relevant switches to get the fastest intgemm decoding.
 
 5. Produce a model that includes the extra quantized values in it and the quantize it to 8 bits:
 ```bash
