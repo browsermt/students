@@ -1,0 +1,5 @@
+name: "bergamot/eten.student.tiny11"
+curator: { name: "Roman Grundkiewicz", contact: "rgrundki@exseed.ed.ac.uk" }
+license: "CC-BY-SA-NC-4.0"
+webpage: "http://statmt.org/bergamot/models/scripts/enet/"
+description: "Estonian-English Tiny Transformer Student Model"

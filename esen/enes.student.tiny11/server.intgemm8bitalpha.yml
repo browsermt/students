@@ -1,0 +1,22 @@
+relative-paths: true
+models:
+  - model.intgemm.alphas.bin
+vocabs:
+  - vocab.esen.spm
+  - vocab.esen.spm
+beam-size: 1
+normalize: 1.0
+word-penalty: 0
+mini-batch: 64
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 2000
+max-length-factor: 2.0
+skip-cost: true
+gemm-precision: int8shiftAlphaAll
+
+# SERVER OPTIONS
+source-language: English
+target-language: Spanish
+ssplit-prefix-file: "${SSPLIT_ROOT_DIR}/nonbreaking_prefixes/nonbreaking_prefix.en"
+qe-sentence-level-thresholds: []
