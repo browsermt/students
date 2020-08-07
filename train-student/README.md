@@ -10,7 +10,7 @@ resources, etc.  Open, read, and update a script before using it.
 
 ## Requirements
 
-* marian-dev compiled with CPU FBGEMM, CUDA and SentencePiece
+* [marian-dev](https://github.com/browsermt/marian-dev) compiled with CPU FBGEMM, CUDA and SentencePiece
 * 4 GPUs with 12GB memory (recommended)
 * GNU parallel
 * SacreBLEU
@@ -93,9 +93,7 @@ In order to deliver fast performance on user hardware, we need to quantize our m
 
 	- Take the training script that you used for producing the student and add the following switches to the marian command: `--compress-bit 8 --compress-skip-bias`. Example is shown in https://github.com/browsermt/students/blob/master/train-student/finetune/run.me.finetune.example.sh. Finetuning is **really** fast. The model's quality is going to start going down after a few thousand mini-batches. Make sure you have frequent validations so that you don't miss the sweet spot!
 
-3. Compile the relevant marian branch: https://github.com/marian-nmt/marian-dev/tree/intgemm_reintegrated_computestats
-
-4. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
+3. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
 ```bash
 $MARIAN/marian-decoder \
             --relative-paths -m model-finetune.npz.best-bleu-detok.npz -v vocab.spm vocab.spm --dump-quantmult \
@@ -106,7 +104,7 @@ $MARIAN/marian-decoder \
 ```
 Furthermore `--int8shiftAlphaAll` is the relevant switches to get the fastest intgemm decoding.
 
-5. Produce a model that includes the extra quantized values in it and the quantize it to 8 bits:
+4. Produce a model that includes the extra quantized values in it and the quantize it to 8 bits:
 ```bash
 $MARIAN/../scripts/alphas/extract_stats.py quantmults model-finetune.npz.best-bleu-detok.npz model-finetune.npz.best-bleu-detok.alphas.npz
 $MARIAN/marian-conv -f model-finetune.npz.best-bleu-detok.alphas.npz -t model-finetune.intgemm.alphas.bin --gemm-type intgemm8
@@ -115,7 +113,7 @@ Note, that you can fine tune the quantization procedure inside `extract_stats.py
 
 **IMPORTANT** CPU threads must be set to 1 for this step.
 
-6. Decode using the new model:
+5. Decode using the new model:
 
 ```bash
 $MARIAN/marian-decoder \
