@@ -7,10 +7,11 @@
 #
 
 set -e
+set -x
 
 TOOLS=./tools
 SRC=en
-TRG=de
+TRG=pl
 
 
 for data in $@; do
