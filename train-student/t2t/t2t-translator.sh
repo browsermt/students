@@ -28,7 +28,8 @@ fi
 # activate tensorflow virtual environment
 # source ${HOME}/bergamot/tensorflow-env/bin/activate
 # source /fs/bil0/bergamot/venv/t2t.2/bin/activate
-source ~/venv/t2t.2/bin/activate
+# source ~/venv/t2t.2/bin/activate
+source $VENV_DIR/st3.5/bin/activate
 
 # trap 'deactivate' EXIT
 
@@ -79,6 +80,7 @@ if [[ "$NBEST" -gt 32 ]]; then fail "NBEST is unreasonably large (>32)."; fi
 MODELDIR=/fs/bil0/bergamot/cuni/models/${MODEL}
 LOGFILE=${LOGFILE:-$OUTPUT_FILE.log}
 #BATCH_SIZE=${BATCH_SIZE:-$((512/$NBEST))}
+MAX_INPUT_SIZE=256
 
 
 if [[ "$MODEL" == "encs" ]] ; then
@@ -86,6 +88,11 @@ if [[ "$MODEL" == "encs" ]] ; then
   ENCODER_LAYERS=12
   BATCH_SIZE=${BATCH_SIZE:-16}
 elif [[ "$MODEL" == "csen" ]] ; then
+  PROBLEM=translate_encs_wmt32k_rev
+  ENCODER_LAYERS=6
+  BATCH_SIZE=${BATCH_SIZE:-16}
+elif [[ "$MODEL" == "plen" ]] ; then
+  MODELDIR=/fs/bil0/jerin/models/pl-en
   PROBLEM=translate_encs_wmt32k_rev
   ENCODER_LAYERS=6
   BATCH_SIZE=${BATCH_SIZE:-16}
@@ -110,7 +117,7 @@ for infile in $ifiles; do
   opts+=(--hparams_set=transformer_big_single_gpu)
   opts+=(--data_dir=${MODELDIR})
   opts+=(--output_dir=${MODELDIR})
-  opts+=(--decode_hparams="beam_size=$NBEST,alpha=$ALPHA,batch_size=$BATCH_SIZE,return_beams=True")
+  opts+=(--decode_hparams="beam_size=$NBEST,alpha=$ALPHA,max_input_size=$MAX_INPUT_SIZE,return_beams=True")
   opts+=(--decode_from_file=$infile)
   opts+=(--decode_to_file=${outfile}_)
 
