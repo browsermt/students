@@ -32,11 +32,10 @@ class ParallelWriter:
 
 def main(args):
     prefix = '{}.t2tproc'.format(args.source)
-    with (
-        open(args.source) as source_lines, 
-        open(args.t2t_output) as generated_outputs,
-        ParallelWriter(prefix, args.src_lang, args.tgt_lang) as writer
-    ):
+    with open(args.source) as source_lines,                             \
+         open(args.t2t_output) as generated_outputs,                    \
+         ParallelWriter(prefix, args.src_lang, args.tgt_lang) as writer:
+
         for source, generated_output in zip(source_lines, generated_outputs):
             nbest = generated_output.split('\t')
             if args.nbest != -1:
