@@ -21,7 +21,7 @@ class ParallelWriter:
         self.src_file.write(src + '\n')
         self.tgt_file.write(tgt + '\n')
     
-    def __exit__(*args, **kwargs):
+    def __exit__(self, *args, **kwargs):
         self.src_file.close()
         self.tgt_file.close()
 
