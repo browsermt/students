@@ -37,9 +37,16 @@ def main(args):
          ParallelWriter(prefix, args.src_lang, args.tgt_lang) as writer:
 
         for source, generated_output in zip(source_lines, generated_outputs):
+            # Remove unnecessary '\n'.
+            source = source.strip()
+            generated_output = generated_output.strip()
+
+            # T2T outputs are tab separated.
             nbest = generated_output.split('\t')
+
             if args.nbest != -1:
                 assert len(nbest) == args.nbest, "nbest does not seem matching, please inspect."
+
             writer.add_nbest(source, nbest)
 
 
