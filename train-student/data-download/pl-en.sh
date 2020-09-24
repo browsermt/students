@@ -17,7 +17,8 @@ PARALLEL=(
 MONOLINGUAL=(
     "http://www.statmt.org/europarl/v10/training-monolingual/europarl-v10.pl.tsv.gz" # Europarl
     "http://data.statmt.org/news-crawl/pl/news.2019.pl.shuffled.deduped.gz" # Newscrawl
-    "http://data.statmt.org/wmt20/translation-task/ps-km/cc60_with_url_v2.km_KH_filtered.xz" # CommonCrawl
+    # Commenting out: This is 60G compressed, way too much extra processing.
+    # "http://web-language-models.s3-website-us-east-1.amazonaws.com/ngrams/pl/deduped/pl.deduped.xz" # CommonCrawl
 )
 
 PARALLEL_DIR="$DOWNLOAD_DIR/parallel"
