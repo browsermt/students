@@ -22,6 +22,7 @@ CHARS = {
     'es': r'[a-zÁáÉéÍíÓóÚúñÑ¡!¿?]',
     'et': r'[a-zÕõÄäÖöÜü]',
     'de': r'[a-zÄäÖöÜüß]',
+    'pl': r'[a-zĄąĆćĘęŁłŃńÓóŚśŹźŻż]', # https://en.wikipedia.org/wiki/Polish_alphabet#Letters
 }
 
 
