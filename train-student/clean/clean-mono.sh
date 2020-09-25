@@ -18,9 +18,9 @@ for mono in $@; do
 
     ######################################################################
     # Basic preprocessing
-    pigz -dc $prefix.$SRC.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "perl $TOOLS/remove-non-printing-char.pl | perl $TOOLS/normalize-punctuation.pl -l $SRC" \
-        | pigz > $prefix.$SRC.nrm.gz
+    pigz -dc $mono.$SRC.gz \
+        | parallel --no-notice --pipe -k -j16 --block 50M "perl $TOOLS/remove-non-printing-char.perl | perl $TOOLS/normalize-punctuation.perl -l $SRC" \
+        | pigz > $mono.$SRC.nrm.gz
 
     test -s $mono.$SRC.nrm.gz || exit 1
 
