@@ -40,7 +40,7 @@ for mono in $@; do
     ######################################################################
     # Rule-based filtering
     pigz -dc $mono.$SRC.langid.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python $TOOLS/clean-parallel.py -l $SRC --debug" \
+        | parallel --no-notice --pipe -k -j16 --block 50M "python $TOOLS/clean-mono.py -l $SRC --debug" \
         2> $mono.$SRC.clean.debug.txt \
         | pigz > $mono.$SRC.clean.gz
 
