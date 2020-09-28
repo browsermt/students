@@ -30,9 +30,13 @@ def main():
 
     model = fasttext.load_model(mpath)
 
-    for line in sys.stdin:
+    for i, line in enumerate(sys.stdin, 1):
         fields = line.strip().split("\t")
-        lid = model.predict(fields[args.field])
+        try:
+            lid = model.predict(fields[args.field])
+        except IndexError:
+            sys.stderr.write("Error on line", i)
+            continue
         sys.stdout.write("{}\t{}".format(lid[0][0][-2:], line))
 
 
