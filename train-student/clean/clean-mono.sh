@@ -10,7 +10,7 @@ set -eo pipefail;
 set -x;
 
 TOOLS=./tools
-SRC=en
+SRC=pl
 
 NCPUS=16
 

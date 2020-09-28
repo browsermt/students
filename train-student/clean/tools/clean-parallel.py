@@ -47,7 +47,7 @@ def build_parallel_cleaner(args):
 
         ratio_len = src_len / float(trg_len)
         if ratio_len < args.ratio_length or ratio_len > (1. / args.ratio_length):
-            return "args.ratio_length"
+            return "RATIO_LENGTH"
 
         if src_len < args.min_length or trg_len < args.min_length:
             return "TOO_SHORT"
