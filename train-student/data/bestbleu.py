@@ -145,8 +145,11 @@ def get_ngram_precisions(references, translation, max_order=4):
     precisions = [0] * max_order
     for i in range(0, max_order):
         # smoothing
-        precisions[i] = ((matches_by_order[i] + 1.) /
-                         (possible_matches_by_order[i] + 1.))
+        if matches_by_order[i] == 0 and possible_matches_by_order[i] == 0:
+            precisions[i] = 0.0
+        else:
+            precisions[i] = ((matches_by_order[i] + 1.) /
+                             (possible_matches_by_order[i] + 1.))
     return precisions
 
 
