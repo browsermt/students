@@ -34,8 +34,8 @@ find "$DATA_DIR" -iname "*.${SRC}" | xargs -I% cat % >> "${LOCAL_DATA}/train.${S
 find "$DATA_DIR" -iname "*.${TGT}" | xargs -I% cat % >> "${LOCAL_DATA}/train.${TGT}"
 
 function spm_train_lang {
+    LNG="$1"
     VOCAB="32768"
-
     SPM_ARGS=(
         --input "${LOCAL_DATA}/train.${LNG}"
         --model_prefix "${OUTPUT_DIR}/${LNG}.${VOCAB}"
