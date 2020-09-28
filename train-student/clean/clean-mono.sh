@@ -53,7 +53,7 @@ for mono in $@; do
     test -s $mono.$SRC.clean.gz || exit 1
 
     # Remove data from intermediate steps
-    rm -f *.nrm.gz *.nrm.uniq.gz *.langid.gz
+    rm -f ${mono}*.nrm.gz ${mono}*.nrm.uniq.gz ${mono}*.langid.gz
     # wc -l *.debug.txt
 done
 
