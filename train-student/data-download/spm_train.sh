@@ -1,6 +1,6 @@
 #!/bin/bash
 #SBATCH --qos cpu3
-#SBATCH --account t2-cs119-cpu-sl4
+#SBATCH --account t2-cs119-sl4-cpu
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 32
