@@ -2,7 +2,7 @@
 # 
 # Usage:
 # ./pl-en.sh DOWNLOAD_DIR
-# Downloads Polish-English models into a dir
+# Downloads Polish-English data into DOWNLOAD_DIR
 
 DOWNLOAD_DIR="$1"
 
