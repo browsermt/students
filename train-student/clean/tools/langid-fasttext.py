@@ -35,7 +35,7 @@ def main():
         try:
             lid = model.predict(fields[args.field])
         except IndexError:
-            sys.stderr.write("Error on line {}".format(i))
+            sys.stderr.write("Error on line {}, not enough fields.\n".format(i))
             continue
         sys.stdout.write("{}\t{}".format(lid[0][0][-2:], line))
 
