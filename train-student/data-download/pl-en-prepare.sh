@@ -3,7 +3,7 @@
 
 set -x;
 
-STUDENTS='/home/cs-phil1/code/student'
+STUDENTS='/home/cs-phil1/code/students'
 DATA_DIR='/home/cs-phil1/rds/rds-t2-cs119/jerin/pl-en'
 
 # We'll do this the hard way, no wildcards, loops.
@@ -11,33 +11,43 @@ DATA_DIR='/home/cs-phil1/rds/rds-t2-cs119/jerin/pl-en'
 #   {name}.{en,pl} would connect parallel pairs.
 
 
-cd "$DATA_DIR/parallel";
+(cd "$DATA_DIR/parallel";
+    pigz -dc "europarl-v10.pl-en.tsv.gz" \
+        | awk -F '\t' '{print $1 > "europarl-v10.pl"; print $2 > "europarl-v10.en";}'
 
     # en-pl.txt.gz is tab separated.
     pigz -dc "en-pl.txt.gz" \
-        | awk -F '\t' '{print $1 > paracrawl.en-pl.en; print $2 > paracrawl.en-pl.pl;}'
+        | awk -F '\t' '{print $1 > "paracrawl.en-pl.en"; print $2 > "paracrawl.en-pl.pl";}'
 
-    pigz -dc "europarl-v10-pl-en.tsv.gz" \
-        | awk -F '\t' '{print $1 > europarl-v10.pl; print $2 > europarl-v10.en;}'
 
     pigz -dc "wikititles-v2.pl-en.tsv.gz" \
-        | awk -F '\t' '{print $1 > wikititles.pl; print $2 > wikititles.en;}'
+        | awk -F '\t' '{print $1 > "wikititles.pl"; print $2 > "wikititles.en";}'
 
+<<<<<<< HEAD
     # WikiMatrix
     $STUDENTS/train-student/utils/wikimatrix_extract.py \
+=======
+    python3 $STUDENTS/train-student/utils/wikimatrix_extract.py \
+>>>>>>> 6528691e5a68884e0d6a32c0d532b9e324839fea
         --tsv "WikiMatrix.v1.en-pl.langid.tsv.gz"       \
         --bitext "WikiMatrix.v1.en-pl.langid"           \
-        --src-lang en --tgt-lang pl                     \
+        --src-lang en --trg-lang pl                     \
         --threshold 1.0
 
+<<<<<<< HEAD
     # RAPID_2019.UNIQUE
     unzip "rapid2019.en-pl.tmx.zip" && tmx2corpus "RAPID_2019.UNIQUE.en-pl.tmx"
     mv bitext.en RAPID_2019.UNIQUE.en;
     mv bitext.pl RAPID_2019.UNIQUE.pl;
     rm -v bitext.tok.{en,pl};
+=======
+    unzip "rapid2019.en-pl.tmx.zip" && tmx2corpus "RAPID_2019.UNIQUE.en-pl.tmx"
+)
+>>>>>>> 6528691e5a68884e0d6a32c0d532b9e324839fea
 
-cd "$DATA_DIR/monolingual";
+(cd "$DATA_DIR/monolingual";
 
+<<<<<<< HEAD
 
 pigz -dc "news.2019.pl.shuffled.deduped.gz" > "news.2019.pl"
 pigz -dc "europarl-v10.pl.tsv.gz" > "europarl-v10.pl"
@@ -47,3 +57,9 @@ pigz -dc "europarl-v10.pl.tsv.gz" > "europarl-v10.pl"
 (cd $DATA_DIR;
 cat parallel/{paracrawl.en-pl,europarl-v10,RAPID_2019.UNIQUE}
 )
+=======
+    # xz --decompress --keep "pl.deduped.xz"
+    pigz -dc "news.2019.pl.shuffled.deduped.gz" > "news.2019.pl"
+    pigz -dc "europarl-v10.pl.tsv.gz" > "europarl-v10.pl"
+)
+>>>>>>> 6528691e5a68884e0d6a32c0d532b9e324839fea
