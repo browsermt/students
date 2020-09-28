@@ -45,7 +45,10 @@ function spm_train_lang {
         --character_coverage 1.0
         --vocab_size "$VOCAB"
         --num_threads "${SLURM_CPUS_PER_TASK}"
+        # Large corpus stuff
         --train_extremely_large_corpus
+        --input_sentence_size=2000000  # 2M
+        --shuffle_input_sentence=True
 
     )
 
