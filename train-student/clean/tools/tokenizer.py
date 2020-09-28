@@ -34,7 +34,7 @@ def build_tokenizer(args):
     if args.use_sentencepiece:
         assert(args.src_sentencepiece_prefix is not None)
         tokenizer = {
-            'src': SentencePieceTokenizer(args.source_sentencepiece_prefix),
+            'src': SentencePieceTokenizer(args.src_sentencepiece_prefix),
             'tgt': None if args.tgt_sentencepiece_prefix is None else SentencePieceTokenizer(args.tgt_sentencepiece_prefix)
         }
         return tokenizer
