@@ -14,9 +14,7 @@ from tokenizer import build_tokenizer
 
 def main():
     args = parse_user_args()
-
     clean_parallel = build_parallel_cleaner(args)
-
     for i, line in enumerate(sys.stdin):
         fields = line.strip().split('\t')
         if len(fields) < 2:
@@ -67,6 +65,7 @@ def build_parallel_cleaner(args):
             return "RATIO_CHARS"
 
         return None
+    return clean_parallel
 
 
 def parse_user_args():
