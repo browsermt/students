@@ -6,11 +6,17 @@
 #   bash clean-mono.sh prefix [prefix...]
 #
 
-set -e
+set -eo pipefail;
+set -x;
 
 TOOLS=./tools
 SRC=en
 
+NCPUS=16
+
+if [-z "$SLURM_CPUS_PER_TASK"]; then
+    NCPUS=$SLURM_CPUS_PER_TASK
+fi
 
 for mono in $@; do
     # Check if files exist
@@ -18,9 +24,9 @@ for mono in $@; do
 
     ######################################################################
     # Basic preprocessing
-    pigz -dc $prefix.$SRC.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "perl $TOOLS/remove-non-printing-char.pl | perl $TOOLS/normalize-punctuation.pl -l $SRC" \
-        | pigz > $prefix.$SRC.nrm.gz
+    pigz -dc $mono.$SRC.gz \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "perl $TOOLS/remove-non-printing-char.pl | perl $TOOLS/normalize-punctuation.pl -l $SRC" \
+        | pigz > $mono.$SRC.nrm.gz
 
     test -s $mono.$SRC.nrm.gz || exit 1
 
@@ -33,14 +39,14 @@ for mono in $@; do
     ######################################################################
     # Language identification
     pigz -dc $mono.$SRC.nrm.uniq.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python $TOOLS/langid-fasttext.py" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python $TOOLS/langid-fasttext.py" \
         | grep -P "^$SRC\t" | cut -f2 \
         | pigz > $mono.$SRC.langid.gz
 
     ######################################################################
     # Rule-based filtering
     pigz -dc $mono.$SRC.langid.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python $TOOLS/clean-parallel.py -l $SRC --debug" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python $TOOLS/clean-parallel.py -l $SRC --debug" \
         2> $mono.$SRC.clean.debug.txt \
         | pigz > $mono.$SRC.clean.gz
 

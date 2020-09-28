@@ -6,12 +6,18 @@
 #   bash clean-corpus.sh prefix [prefix...]
 #
 
-set -e
-set -x
+set -eo pipefail;
+set -x;
 
 TOOLS=./tools
 SRC=en
 TRG=pl
+
+NCPUS=16
+
+if [-z "$SLURM_CPUS_PER_TASK"]; then
+    NCPUS=$SLURM_CPUS_PER_TASK
+fi
 
 
 for data in $@; do
@@ -24,7 +30,7 @@ for data in $@; do
     for lng in $SRC $TRG; do
 
         pigz -dc $data.$lng.gz \
-            | parallel --no-notice --pipe -k -j16 --block 50M "perl $TOOLS/remove-non-printing-char.perl | perl $TOOLS/normalize-punctuation.perl -l $lng" \
+            | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "perl $TOOLS/remove-non-printing-char.perl | perl $TOOLS/normalize-punctuation.perl -l $lng" \
             | pigz > $data.$lng.nrm.gz
     done
 
@@ -42,7 +48,7 @@ for data in $@; do
     ######################################################################
     # Language identification
     pigz -dc $data.$SRC$TRG.nrm.uniq.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python3 $TOOLS/langid-fasttext.py -f 1 | python3 $TOOLS/langid-fasttext.py -f 1" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python3 $TOOLS/langid-fasttext.py -f 1 | python3 $TOOLS/langid-fasttext.py -f 1" \
         | grep -P "^$SRC\t$TRG\t" \
         | cut -f3,4 \
         | pigz > $data.$SRC$TRG.langid.gz
@@ -52,7 +58,7 @@ for data in $@; do
     ######################################################################
     # Rule-based filtering
     pigz -dc $data.$SRC$TRG.langid.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python3 $TOOLS/clean-parallel.py -l1 $SRC -l2 $TRG --debug" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python3 $TOOLS/clean-parallel.py -l1 $SRC -l2 $TRG --debug" \
         2> $data.$SRC$TRG.clean.debug.txt \
         | pigz > $data.$SRC$TRG.clean.gz
 
