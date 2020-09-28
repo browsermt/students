@@ -7,11 +7,19 @@
 #SBATCH --mem 160G
 #SBATCH --time 12:00:00
 
+# Usage:
+# ./spm_train.sh DATA_DIR
+# DATA_DIR has the following assumption of a structure:
+# DATA_DIR/parallel/*.{xx,yy}, containing xx-yy parallel corpora
+# DATA_DIR/monolingual/*.{xx,yy} containing monolingual corpora
+
 
 module load use.own
 module load sentencepiece/0.1.92
 
 set -x;
+
+DATA_DIR="$1"
 
 LOCAL_DATA="/local/$USER"
 mkdir -p $LOCAL_DATA
