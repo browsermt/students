@@ -16,9 +16,12 @@ def main():
     if args.metric == 'bleu':
         score_function = compute_bleu
     elif args.metric == 'sacrebleu':
+        global sacrebleu
         import sacrebleu
         score_function = compute_sacrebleu
     elif args.metric == 'chrf':
+        global sacrebleu
+        import sacrebleu
         score_function = compute_chrf
     else:
         sys.stderr.write('Unrecognized metric: {}\n'.format(args.metric))
@@ -94,12 +97,12 @@ def marian_best_bleu(args,score_function):
 def compute_chrf(references, translation):
     hypo = ' '.join(translation)
     refs = [' '.join(r) for r in references][0]
-    return sacrebleu.sentence_chrf(hypo, refs)
+    return sacrebleu.sentence_chrf(hypo, refs).score
 
 
 def compute_sacrebleu(references, translation):
     hypo = ' '.join(translation)
-    refs = [' '.join(r) for r in references][0]
+    refs = [' '.join(r) for r in references]
     return sacrebleu.sentence_bleu(hypo, refs).score
 
 
