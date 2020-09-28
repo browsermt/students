@@ -8,10 +8,11 @@
 #SBATCH --time 12:00:00
 
 # Usage:
-# ./spm_train.sh DATA_DIR
+# ./spm_train.sh DATA_DIR SRC_LANG TGT_LANG
 # DATA_DIR has the following assumption of a structure:
 # DATA_DIR/parallel/*.{xx,yy}, containing xx-yy parallel corpora
 # DATA_DIR/monolingual/*.{xx,yy} containing monolingual corpora
+# SRC_LANG and TGT_LANG correspond to xx-yy
 
 
 module load use.own
@@ -20,6 +21,8 @@ module load sentencepiece/0.1.92
 set -x;
 
 DATA_DIR="$1"
+SRC="$2"
+TGT="$3"
 
 LOCAL_DATA="/local/$USER"
 mkdir -p $LOCAL_DATA
