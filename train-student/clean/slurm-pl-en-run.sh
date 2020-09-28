@@ -9,17 +9,19 @@
 #SBATCH --mail-type ALL
 #SBATCH --mail-user jphilip@ed.ac.uk
 
+DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
+
 PARALLEL=(
-"./parallel/europarl-v10"
-"./parallel/WikiMatrix.v1.en-pl.langid"
-"./parallel/wikititles"
-"./parallel/paracrawl.en-pl"
-"./parallel/RAPID_2019.UNIQUE"
+    "${DATA_DIR}/parallel/europarl-v10"
+    "${DATA_DIR}/parallel/WikiMatrix.v1.en-pl.langid"
+    "${DATA_DIR}/parallel/wikititles"
+    "${DATA_DIR}/parallel/paracrawl.en-pl"
+    "${DATA_DIR}/parallel/RAPID_2019.UNIQUE"
 )
 
 MONOLINGUAL=(
-    "./monolingual/europarl-v10"
-    "./monolingual/news.2019"
+    "${DATA_DIR}/monolingual/europarl-v10"
+    "${DATA_DIR}/monolingual/news.2019"
 )
 
 bash clean-corpus.sh "${PARALLEL[@]}"
