@@ -25,7 +25,7 @@ class SentencePieceTokenizer:
         vocab = set()
         with open(vocab_path) as fp:
             for line in fp:
-                word, _ = line.strip().split()
+                word, *_ = line.strip().split('\t')
                 vocab.add(word)
         return vocab
 
