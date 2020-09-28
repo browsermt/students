@@ -28,6 +28,17 @@ class SentencePieceTokenizer:
                 word, *_ = line.strip().split('\t')
                 vocab.add(word)
         return vocab
+    
+    def detokenize(self, sentence):
+        SPM_SYMBOL = '▁'
+        value = value.replace(' ', '')
+        value = value.replace(SPM_SYMBOL, ' ')
+        if not value:
+            return ''
+        if value[0] == ' ':
+            value = value[1:]
+        return value
+
 
 
 def build_tokenizer(args):

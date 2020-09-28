@@ -56,7 +56,7 @@ def build_parallel_cleaner(args):
             return "TOO_LONG"
 
         num_alpha = sum(
-            [1 if re.match(CHARS[args.src_lang], t, re.IGNORECASE) else 0 for t in src_toks])
+            [1 if re.match(CHARS[args.src_lang], tokenizer['src'].detokenize(t), re.IGNORECASE) else 0 for t in src_toks])
         if num_alpha / float(src_len) < args.ratio_alpha_words:
             return "RATIO_ALPHA"
 
