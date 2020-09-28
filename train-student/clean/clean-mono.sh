@@ -14,7 +14,7 @@ SRC=en
 
 NCPUS=16
 
-if [-z "$SLURM_CPUS_PER_TASK"]; then
+if [ ! -z "$SLURM_CPUS_PER_TASK" ]; then
     NCPUS=$SLURM_CPUS_PER_TASK
 fi
 

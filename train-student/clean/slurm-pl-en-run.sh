@@ -5,9 +5,11 @@
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 32
 #SBATCH --mem 160G
-#SBATCH --time 12:00:00
+#SBATCH --time 3:00:00
 #SBATCH --mail-type ALL
 #SBATCH --mail-user jphilip@ed.ac.uk
+
+module load parallel/20131222
 
 DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
 
