@@ -29,15 +29,15 @@ class SentencePieceTokenizer:
                 vocab.add(word)
         return vocab
     
-    def detokenize(self, sentence):
+    def detokenize(self, tokenized_entry):
         SPM_SYMBOL = '▁'
-        value = value.replace(' ', '')
-        value = value.replace(SPM_SYMBOL, ' ')
-        if not value:
+        tokenized_entry = tokenized_entry.replace(' ', '')
+        tokenized_entry = tokenized_entry.replace(SPM_SYMBOL, ' ')
+        if not tokenized_entry:
             return ''
-        if value[0] == ' ':
-            value = value[1:]
-        return value
+        if tokenized_entry[0] == ' ':
+            tokenized_entry = tokenized_entry[1:]
+        return tokenized_entry
 
 
 
