@@ -12,6 +12,11 @@ set -x;
 TOOLS=./tools
 SRC=en
 TRG=pl
+CLEAN_PARALLEL_ARGS=(
+    --use-sentencepiece
+    --src-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/en.32768"
+    --tgt-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/pl.32768"
+)
 
 NCPUS=16
 
@@ -58,7 +63,7 @@ for data in $@; do
     ######################################################################
     # Rule-based filtering
     pigz -dc $data.$SRC$TRG.langid.gz \
-        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python3 $TOOLS/clean-parallel.py -l1 $SRC -l2 $TRG --debug" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python3 $TOOLS/clean-parallel.py -l1 $SRC -l2 $TRG --debug ${CLEAN_PARALLEL_ARGS[@]}" \
         2> $data.$SRC$TRG.clean.debug.txt \
         | pigz > $data.$SRC$TRG.clean.gz
 

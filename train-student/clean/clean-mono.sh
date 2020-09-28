@@ -11,6 +11,10 @@ set -x;
 
 TOOLS=./tools
 SRC=pl
+CLEAN_MONO_ARGS=(
+    --use-sentencepiece
+    --src-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/pl.32768"
+)
 
 NCPUS=16
 
@@ -46,7 +50,7 @@ for mono in $@; do
     ######################################################################
     # Rule-based filtering
     pigz -dc $mono.$SRC.langid.gz \
-        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python $TOOLS/clean-parallel.py -l $SRC --debug" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "python $TOOLS/clean-mono.py -l $SRC --debug ${CLEAN_MONO_ARGS[@]}" \
         2> $mono.$SRC.clean.debug.txt \
         | pigz > $mono.$SRC.clean.gz
 
