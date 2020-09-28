@@ -10,6 +10,7 @@
 #SBATCH --mail-user jphilip@ed.ac.uk
 
 module load parallel/20131222
+. /home/cs-phil1/envs/student/bin/activate
 
 DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
 
