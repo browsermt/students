@@ -69,7 +69,7 @@ for data in $@; do
     test -s $data.$TRG.clean.gz || exit 1
 
     # Remove $data from intermediate steps
-    #rm -f *.nrm.gz *.nrm.uniq.gz *.langid.gz
-    #wc -l *.debug.txt
+    rm -f *.nrm.gz *.nrm.uniq.gz *.langid.gz
+    # wc -l *.debug.txt
 done
 

@@ -25,7 +25,7 @@ for mono in $@; do
     ######################################################################
     # Basic preprocessing
     pigz -dc $mono.$SRC.gz \
-        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "perl $TOOLS/remove-non-printing-char.pl | perl $TOOLS/normalize-punctuation.pl -l $SRC" \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M "perl $TOOLS/remove-non-printing-char.perl | perl $TOOLS/normalize-punctuation.perl -l $SRC" \
         | pigz > $mono.$SRC.nrm.gz
 
     test -s $mono.$SRC.nrm.gz || exit 1
@@ -53,7 +53,7 @@ for mono in $@; do
     test -s $mono.$SRC.clean.gz || exit 1
 
     # Remove data from intermediate steps
-    #rm -f *.nrm.gz *.nrm.uniq.gz *.langid.gz
-    #wc -l *.debug.txt
+    rm -f *.nrm.gz *.nrm.uniq.gz *.langid.gz
+    # wc -l *.debug.txt
 done
 
