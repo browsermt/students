@@ -38,7 +38,7 @@ def build_parallel_cleaner(args):
             return "IDENTICAL"
 
         src_toks = tokenizer['src'](src)
-        trg_toks = tokenizer['tgt'](tgt)
+        trg_toks = tokenizer['tgt'](trg)
         src_len = len(src_toks)
         trg_len = len(trg_toks)
 

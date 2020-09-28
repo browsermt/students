@@ -45,7 +45,7 @@ def build_cleaner(args):
         if num_alpha / float(src_len) < args.ratio_alpha_words:
             return "RATIO_ALPHA"
 
-        char_alpha = len(re.findall(CHARS[lang], src, re.IGNORECASE))
+        char_alpha = len(re.findall(CHARS[args.lang], src, re.IGNORECASE))
         if char_alpha / float(len(src.replace(' ', ''))) < args.ratio_alpha_chars:
             return "RATIO_CHARS"
 

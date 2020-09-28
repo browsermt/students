@@ -11,10 +11,10 @@ CHARS = {
 
 def add_filter_args(parser):
     parser.add_argument('--min-length', type=int, default=2, help="minimum number of words in a sentence")
-    parser.add_argument('--max-length', type=int, default=150 help="maximum number of words in a sentence")
-    parser.add_arugment('--ratio-alpha-words', type=float, default=0.4, help="minimum fraction of real words in a sentence")
-    parser.add_arugment('--ratio-alpha-chars', type=float, default=0.5, help="minimum fraction of alpha characters in a sentence")
-    parser.add_argument('--ratio-length', type=float, default=0.5, hel="maximum length difference between source and target sentence")
+    parser.add_argument('--max-length', type=int, default=150, help="maximum number of words in a sentence")
+    parser.add_argument('--ratio-alpha-words', type=float, default=0.4, help="minimum fraction of real words in a sentence")
+    parser.add_argument('--ratio-alpha-chars', type=float, default=0.5, help="minimum fraction of alpha characters in a sentence")
+    parser.add_argument('--ratio-length', type=float, default=0.5, help="maximum length difference between source and target sentence")
 
     # SentencePiece; Should be no-op otherwise
     parser.add_argument('--use-sentencepiece', action='store_true', help='Switch to enable sentencepiece tokenization')
