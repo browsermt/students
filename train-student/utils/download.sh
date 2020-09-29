@@ -13,5 +13,5 @@ FILES=(
 
 
 for FILE in ${FILES[@]}; do
-    wget --continue --quiet --show-progress $BASE_URL/$FILE;
+    wget --continue $BASE_URL/$FILE;
 done
