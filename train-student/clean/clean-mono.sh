@@ -15,6 +15,7 @@ CLEAN_MONO_ARGS=(
     --use-sentencepiece
     --src-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/pl.32768"
 )
+CLEAN_MONO_ARGS=""
 
 NCPUS=16
 
@@ -59,5 +60,10 @@ for mono in $@; do
     # Remove data from intermediate steps
     rm -f ${mono}*.nrm.gz ${mono}*.nrm.uniq.gz ${mono}*.langid.gz
     # wc -l *.debug.txt
+    WC_DEBUG=$(cat $mono.$SRC.clean.debug.txt | wc -l)
+    WC_ORIGINAL=$(pigz -dc $mono.$SRC.gz | wc -l)
+    WC_CLEAN=$(pigz -dc $mono.$SRC.clean.gz | wc -l)
+    FNAME=$(basename $mono.$SRC.gz)
+    echo "[stats][mono]" $FNAME $WC_ORIGINAL $WC_CLEAN $WC_DEBUG;
 done
 

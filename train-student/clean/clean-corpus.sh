@@ -17,6 +17,7 @@ CLEAN_PARALLEL_ARGS=(
     --src-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/en.32768"
     --tgt-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/pl.32768"
 )
+CLEAN_PARALLEL_ARGS=""
 
 NCPUS=16
 
@@ -75,6 +76,12 @@ for data in $@; do
 
     # Remove $data from intermediate steps
     rm -f ${data}*.nrm.gz ${data}*.nrm.uniq.gz ${data}*.langid.gz
-    # wc -l *.debug.txt
+
+    WC_DEBUG=$(cat $data.$SRC$TRG.clean.debug.txt | wc -l)
+    WC_ORIGINAL=$(pigz -dc $data.$SRC.gz | wc -l)
+    WC_CLEAN=$(pigz -dc $data.$SRC.clean.gz | wc -l)
+    FNAME=$(basename $data)
+    echo "[stats][parallel]" $FNAME $WC_ORIGINAL $WC_CLEAN $WC_DEBUG;
+
 done
 
