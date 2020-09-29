@@ -6,6 +6,9 @@ class SimpleTokenizer:
     def __call__(self, sentence):
         return sentence.split()
 
+    def detokenize(self, sentence):
+        return sentence
+
 
 class SentencePieceTokenizer:
     def __init__(self, prefix):
