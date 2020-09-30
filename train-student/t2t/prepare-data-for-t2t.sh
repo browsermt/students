@@ -59,7 +59,7 @@ pigz -dc "${PARALLEL[@]}"  \
 LC_ALL=C sort                                       \
     -nk 1 -t$'\t' -S 10G                            \
     $LOCAL_WORKSPACE/parallel-intermediate-with-lengths.tsv  \
-    | cut -f3,4 -d '\t'                             \
+    | cut -f3,4 
     | pigz > $OUTPUT_DIR/parallel.gz
 
 pigz -dc "${MONOLINGUAL[@]}"  \
@@ -70,5 +70,5 @@ pigz -dc "${MONOLINGUAL[@]}"  \
 LC_ALL=C sort                                       \
     -nk 1 -t$'\t' -S 10G                            \
     $LOCAL_WORKSPACE/monolingual-intermediate-with-lengths.tsv  \
-    | cut -f2 -d '\t'                             \
+    | cut -f2 
     | pigz > $OUTPUT_DIR/mono.gz
