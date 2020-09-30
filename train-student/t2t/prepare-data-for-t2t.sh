@@ -32,6 +32,9 @@ fi
 PARALLEL=$(find "${DATA_DIR}/parallel" -iname "*.enpl.clean.gz")
 MONOLINGUAL=$(find "${DATA_DIR}/monolingual" -iname "*.pl.clean.gz")
 
+PARALLEL=($PARALLEL)
+MONOLINGUAL=($MONOLINGUAL)
+
 SPIECE_ARGS=(
     --use-sentencepiece
     --src-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/en.32768"
