@@ -58,7 +58,7 @@ LC_ALL=C sort                                       \
     -nk 1 -t '\t' -S 10G                            \
     $LOCAL_WORKSPACE/parallel-intermediate-with-lengths.tsv  \
     | cut -f3,4 -d '\t'                             \
-    | pigz > OUTPUT_DIR/parallel.gz
+    | pigz > $OUTPUT_DIR/parallel.gz
 
 pigz -dc "${MONOLINGUAL[@]}"  \
     | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
@@ -69,4 +69,4 @@ LC_ALL=C sort                                       \
     -nk 1 -t '\t' -S 10G                            \
     $LOCAL_WORKSPACE/monolingual-intermediate-with-lengths.tsv  \
     | cut -f2 -d '\t'                             \
-    | pigz > OUTPUT_DIR/mono.gz
+    | pigz > $OUTPUT_DIR/mono.gz
