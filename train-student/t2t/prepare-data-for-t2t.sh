@@ -16,7 +16,18 @@
 module load parallel/20131222
 . /home/cs-phil1/envs/student/bin/activate
 
+set -x;
+set -eo pipefail;
+
+TOOLS="../clean/tools"
 DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
+
+NCPUS=16
+
+if [ ! -z "$SLURM_CPUS_PER_TASK" ]; then
+    NCPUS=$SLURM_CPUS_PER_TASK
+fi
+
 
 PARALLEL=(
     "${DATA_DIR}/parallel/europarl-v10.gz"
