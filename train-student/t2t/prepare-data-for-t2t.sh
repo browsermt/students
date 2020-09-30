@@ -48,6 +48,8 @@ mkdir -p $LOCAL_WORKSPACE
 OUTPUT_DIR="${DATA_DIR}/intermediate"
 mkdir -p $OUTPUT_DIR
 
+# https://stackoverflow.com/questions/1037365/sorting-a-tab-delimited-file
+
 # Decompress and run through print sort
 pigz -dc "${PARALLEL[@]}"  \
     | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
@@ -55,7 +57,7 @@ pigz -dc "${PARALLEL[@]}"  \
      > $LOCAL_WORKSPACE/parallel-intermediate.with-lengths.tsv
 
 LC_ALL=C sort                                       \
-    -nk 1 -t '\t' -S 10G                            \
+    -nk 1 -t$'\t' -S 10G                            \
     $LOCAL_WORKSPACE/parallel-intermediate-with-lengths.tsv  \
     | cut -f3,4 -d '\t'                             \
     | pigz > $OUTPUT_DIR/parallel.gz
@@ -66,7 +68,7 @@ pigz -dc "${MONOLINGUAL[@]}"  \
      > $LOCAL_WORKSPACE/monolingual-intermediate.with-lengths.tsv
 
 LC_ALL=C sort                                       \
-    -nk 1 -t '\t' -S 10G                            \
+    -nk 1 -t$'\t' -S 10G                            \
     $LOCAL_WORKSPACE/monolingual-intermediate-with-lengths.tsv  \
     | cut -f2 -d '\t'                             \
     | pigz > $OUTPUT_DIR/mono.gz
