@@ -29,18 +29,8 @@ if [ ! -z "$SLURM_CPUS_PER_TASK" ]; then
 fi
 
 
-PARALLEL=(
-    "${DATA_DIR}/parallel/europarl-v10.gz"
-    "${DATA_DIR}/parallel/WikiMatrix.v1.en-pl.langid.gz"
-    "${DATA_DIR}/parallel/wikititles.gz"
-    "${DATA_DIR}/parallel/paracrawl.en-pl.gz"
-    "${DATA_DIR}/parallel/RAPID_2019.UNIQUE.gz"
-)
-
-MONOLINGUAL=(
-    "${DATA_DIR}/monolingual/europarl-v10.gz"
-    "${DATA_DIR}/monolingual/news.2019.gz"
-)
+PARALLEL=$(find "${DATA_DIR}/parallel" -iname "*.enpl.clean.gz")
+MONOLINGUAL=$(find "${DATA_DIR}/monolingual" -iname "*.pl.clean.gz")
 
 SPIECE_ARGS=(
     --use-sentencepiece
