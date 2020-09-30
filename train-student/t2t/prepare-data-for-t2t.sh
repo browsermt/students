@@ -22,6 +22,14 @@ set -eo pipefail;
 TOOLS="../clean/tools"
 DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
 
+OUTPUT_DIR="${DATA_DIR}/intermediate"
+SHARD_DIR="${OUTPUT_DIR}/shards"
+mkdir -p $OUTPUT_DIR $SHARD_DIR
+rm -rv $SHARD_DIR/*
+
+LOCAL_WORKSPACE="/local/$USER"
+mkdir -p $LOCAL_WORKSPACE
+
 NCPUS=16
 
 if [ ! -z "$SLURM_CPUS_PER_TASK" ]; then
@@ -41,34 +49,60 @@ SPIECE_ARGS=(
     --tgt-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/pl.32768"
 )
 
+SHARD_SIZE="100M"
 
-LOCAL_WORKSPACE="/local/$USER"
-mkdir -p $LOCAL_WORKSPACE
-
-OUTPUT_DIR="${DATA_DIR}/intermediate"
-mkdir -p $OUTPUT_DIR
 
 # https://stackoverflow.com/questions/1037365/sorting-a-tab-delimited-file
 
-# Decompress and run through print sort
-pigz -dc "${PARALLEL[@]}"  \
-    | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
-        "python3 $TOOLS/print-lengths.py --dataset-type parallel ${SPIECE_ARGS[@]}" \
-     > $LOCAL_WORKSPACE/parallel-intermediate.with-lengths.tsv
+# Parallel handling
 
-LC_ALL=C sort                                       \
-    -nk 1 -t$'\t' -S 10G                            \
-    $LOCAL_WORKSPACE/parallel-intermediate.with-lengths.tsv  \
-    | cut -f3,4  \
-    | pigz > $OUTPUT_DIR/parallel.gz
+function prepare_parallel {
+    pigz -dc "${PARALLEL[@]}"  \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
+            "python3 $TOOLS/print-lengths.py --dataset-type parallel ${SPIECE_ARGS[@]}" \
+         > $LOCAL_WORKSPACE/parallel-intermediate.with-lengths.tsv
 
-pigz -dc "${MONOLINGUAL[@]}"  \
-    | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
-        "python3 $TOOLS/print-lengths.py --dataset-type monolingual ${SPIECE_ARGS[@]}" \
-     > $LOCAL_WORKSPACE/monolingual-intermediate.with-lengths.tsv
+    LC_ALL=C sort                                       \
+        -nk 1 -t$'\t' -S 10G                            \
+        $LOCAL_WORKSPACE/parallel-intermediate.with-lengths.tsv  \
+        | cut -f3,4  \
+        | pigz > $OUTPUT_DIR/parallel.gz
 
-LC_ALL=C sort                                       \
-    -nk 1 -t$'\t' -S 10G                            \
-    $LOCAL_WORKSPACE/monolingual-intermediate.with-lengths.tsv  \
-    | cut -f2  \
-    | pigz > $OUTPUT_DIR/mono.gz
+    pigz -dc $OUTPUT_DIR/parallel.gz | \
+        split --line-bytes $SHARD_SIZE --numeric-suffixes=0 \
+        --additional-suffix '.tsv' - $SHARD_DIR/parallel 
+
+    ls $SHARD_DIR/parallel[0-9]*.tsv \
+        | parallel -I% --bar --no-notice -j$NCPUS "cut -f1 % > %.en; cut -f2 % > %.pl"; 
+
+    rm $SHARD_DIR/parallel[0-9]*.tsv;
+
+    ls $SHARD_DIR/*.en | parallel --bar --no-notice -j$NCPUS gzip {}
+    ls $SHARD_DIR/*.pl | parallel --bar --no-notice -j$NCPUS gzip {}
+}
+
+
+function prepare_monolingual {
+    pigz -dc "${MONOLINGUAL[@]}"  \
+        | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
+            "python3 $TOOLS/print-lengths.py --dataset-type monolingual ${SPIECE_ARGS[@]}" \
+         > $LOCAL_WORKSPACE/monolingual-intermediate.with-lengths.tsv
+
+    # Monolingual handling
+    LC_ALL=C sort                                       \
+        -nk 1 -t$'\t' -S 10G                            \
+        $LOCAL_WORKSPACE/monolingual-intermediate.with-lengths.tsv  \
+        | cut -f2  \
+        | pigz > $OUTPUT_DIR/mono.gz
+
+
+    pigz -dc $OUTPUT_DIR/mono.gz | \
+        split --line-bytes $SHARD_SIZE --numeric-suffixes=0 \
+        --additional-suffix '.pl' - $SHARD_DIR/monolingual
+
+    ls $SHARD_DIR/monolingual[0-9]*.pl | parallel --bar --no-notice -j$NCPUS -I% gzip %
+}
+
+
+prepare_parallel
+prepare_monolingual
