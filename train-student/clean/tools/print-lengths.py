@@ -41,5 +41,5 @@ if __name__ == '__main__':
             line = transform(tokenizer, line)
             sys.stdout.write(line + '\n')
         except:
-            sys.stderr.write("Error in line {}: {}".format(idx, line))
+            sys.stderr.write("Error in line {}: {}\n".format(idx, line))
         
