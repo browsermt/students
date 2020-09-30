@@ -15,7 +15,9 @@ def add_filter_args(parser):
     parser.add_argument('--ratio-alpha-words', type=float, default=0.4, help="minimum fraction of real words in a sentence")
     parser.add_argument('--ratio-alpha-chars', type=float, default=0.5, help="minimum fraction of alpha characters in a sentence")
     parser.add_argument('--ratio-length', type=float, default=0.5, help="maximum length difference between source and target sentence")
+    add_sentencepiece_args(parser)
 
+def add_sentencepiece_args(parser):
     # SentencePiece; Should be no-op otherwise
     parser.add_argument('--use-sentencepiece', action='store_true', help='Switch to enable sentencepiece tokenization')
     parser.add_argument('--src-sentencepiece-prefix', type=str, default=None, help="{prefix}.{vocab,model} where SentencePiece vocabulary or model can be found")
