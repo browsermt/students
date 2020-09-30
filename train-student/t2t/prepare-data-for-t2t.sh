@@ -51,7 +51,7 @@ mkdir -p $OUTPUT_DIR
 # Decompress and run through print sort
 pigz -dc "${PARALLEL[@]}"  \
     | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
-        "python3 $TOOLS/print-lengths.py --type parallel ${SPIECE_ARGS[@]}" \
+        "python3 $TOOLS/print-lengths.py --dataset-type parallel ${SPIECE_ARGS[@]}" \
      > $LOCAL_WORKSPACE/parallel-intermediate.with-lengths.tsv
 
 LC_ALL=C sort                                       \
@@ -62,7 +62,7 @@ LC_ALL=C sort                                       \
 
 pigz -dc "${MONOLINGUAL[@]}"  \
     | parallel --no-notice --pipe -k -j${NCPUS} --block 50M \
-        "python3 $TOOLS/print-lengths.py --type monolingual ${SPIECE_ARGS[@]}" \
+        "python3 $TOOLS/print-lengths.py --dataset-type monolingual ${SPIECE_ARGS[@]}" \
      > $LOCAL_WORKSPACE/monolingual-intermediate.with-lengths.tsv
 
 LC_ALL=C sort                                       \
