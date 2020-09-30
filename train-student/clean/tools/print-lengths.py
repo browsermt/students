@@ -22,12 +22,12 @@ def monolingual(tokenizer, src):
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='Print lengths of tsv parallel corpus or monolingual corpus')
-    parser.add_argument('--dataset-type', type=str, required=True, choices=['parallel', 'mono'])
+    parser.add_argument('--dataset-type', type=str, required=True, choices=['parallel', 'monolingual'])
     add_sentencepiece_args(parser)
 
     transform_opts = {
         "parallel": parallel,
-        "mono": monolingual
+        "monolingual": monolingual
     }
 
     args = parser.parse_args()
