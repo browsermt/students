@@ -79,24 +79,21 @@ if [[ "$NBEST" -gt 32 ]]; then fail "NBEST is unreasonably large (>32)."; fi
 # BERGAMOT_ROOT_DIR=${BERGAMOT_ROOT_DIR:-$(dirname $(dirname $0))}
 LOGFILE=${LOGFILE:-$OUTPUT_FILE.log}
 #BATCH_SIZE=${BATCH_SIZE:-$((512/$NBEST))}
-MAX_INPUT_SIZE=256
+# MAX_INPUT_SIZE=512
 
 
 if [[ "$MODEL" == "encs" ]] ; then
   MODELDIR=/fs/bil0/bergamot/cuni/models/${MODEL}
   PROBLEM=translate_encs_wmt32k
   ENCODER_LAYERS=12
-  BATCH_SIZE=${BATCH_SIZE:-16}
 elif [[ "$MODEL" == "csen" ]] ; then
   MODELDIR=/fs/bil0/bergamot/cuni/models/${MODEL}
   PROBLEM=translate_encs_wmt32k_rev
   ENCODER_LAYERS=6
-  BATCH_SIZE=${BATCH_SIZE:-16}
 elif [[ "$MODEL" == "plen" ]] ; then
   MODELDIR=/home/$USER/rds/rds-t2-cs119/jerin/pl-en/t2t-models
   PROBLEM=translate_encs_wmt32k_rev
   ENCODER_LAYERS=6
-  BATCH_SIZE=${BATCH_SIZE:-16}
 fi
 
 # if [[ -d $IDIR ]]; then
@@ -138,13 +135,13 @@ for infile in $ifiles; do
   opts+=(--hparams_set=transformer_big_single_gpu)
   opts+=(--data_dir=${MODELDIR})
   opts+=(--output_dir=${MODELDIR})
-  opts+=(--decode_hparams="beam_size=$NBEST,alpha=$ALPHA,max_input_size=$MAX_INPUT_SIZE,return_beams=True")
+  opts+=(--decode_hparams="beam_size=$NBEST,alpha=$ALPHA,return_beams=True,batch_size=$BATCH_SIZE")
   opts+=(--decode_from_file=$infile)
   opts+=(--decode_to_file=${outfile}_)
 
-  echo "On host $(hostname)" > $logfile
-  echo "t2t-decoder ${opts[@]}" >> $logfile
-  t2t-decoder ${opts[@]} 2>> $logfile
+  echo "On host $(hostname)" 
+  echo "t2t-decoder ${opts[@]}"
+  t2t-decoder ${opts[@]} $logfile
   # echo "t2t-decoder ${opts[@]}"
   # t2t-decoder ${opts[@]} 
   succ=$?
