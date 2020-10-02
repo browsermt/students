@@ -16,8 +16,8 @@
 #SBATCH --no-requeue
 #SBATCH --partition pascal
 #SBATCH --signal=B:USR1@300
-#SBATCH --output=inference-pl-%A_%a.log
-##SBATCH --array=0-35%1
+#SBATCH --output=/home/cs-phil1/slurm-logs/inference-pl-%A_%a.log
+#SBATCH --array=0-172
 
 if [[ "$SLURM_JOBID" != "" ]]; then
     module purge
@@ -77,6 +77,7 @@ if [[ "$DATASET_TYPE" == "" ]]; then fail "No dataset-type specified."; fi
 if [[ "$NBEST" -gt 32 ]]; then fail "NBEST is unreasonably large (>32)."; fi
 
 # BERGAMOT_ROOT_DIR=${BERGAMOT_ROOT_DIR:-$(dirname $(dirname $0))}
+set -x;
 LOGFILE=${LOGFILE:-$OUTPUT_FILE.log}
 #BATCH_SIZE=${BATCH_SIZE:-$((512/$NBEST))}
 # MAX_INPUT_SIZE=512
@@ -105,7 +106,7 @@ fi
 DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
 OUTPUT_DIR="${DATA_DIR}/intermediate"
 SHARD_DIR="${OUTPUT_DIR}/shards"
-printf -v SHARD_ID "%02d" $SLURM_ARRAY_TASK_ID
+printf -v SHARD_ID "%03d" $SLURM_ARRAY_TASK_ID
 
 if [ "$DATASET_TYPE" == "parallel" ]; then
     EXTRA_FSEG=".tsv"
@@ -125,8 +126,8 @@ echo $ifiles
 for infile in $ifiles; do 
   echo $infile
   outfile=$infile.out
-  [[ ! -e $outfile ]] || continue
-  mkdir ${infile}.lock || continue
+  # [[ ! -e $outfile ]] || continue
+  # mkdir ${infile}.lock || continue
   logfile=$infile.log
   
   opts=(--model=transformer)
@@ -139,9 +140,9 @@ for infile in $ifiles; do
   opts+=(--decode_from_file=$infile)
   opts+=(--decode_to_file=${outfile}_)
 
-  echo "On host $(hostname)" 
-  echo "t2t-decoder ${opts[@]}"
-  t2t-decoder ${opts[@]} $logfile
+  echo "On host $(hostname)"  >$logfile
+  echo "t2t-decoder ${opts[@]}" >> $logfile
+  t2t-decoder ${opts[@]}  2>> $logfile
   # echo "t2t-decoder ${opts[@]}"
   # t2t-decoder ${opts[@]} 
   succ=$?
