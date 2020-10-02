@@ -25,7 +25,7 @@ DATA_DIR="/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en"
 OUTPUT_DIR="${DATA_DIR}/intermediate"
 SHARD_DIR="${OUTPUT_DIR}/shards"
 mkdir -p $OUTPUT_DIR $SHARD_DIR
-rm -rv $SHARD_DIR/*
+rm -rv $SHARD_DIR/* || continue
 
 LOCAL_WORKSPACE="/local/$USER"
 mkdir -p $LOCAL_WORKSPACE
@@ -49,7 +49,7 @@ SPIECE_ARGS=(
     --tgt-sentencepiece-prefix "/rds/project/t2_vol4/rds-t2-cs119/jerin/pl-en/sentencepiece-models/pl.32768"
 )
 
-SHARD_SIZE="100M"
+SHARD_SIZE="100000" # Currently set to number of lines.
 
 
 # https://stackoverflow.com/questions/1037365/sorting-a-tab-delimited-file
@@ -69,7 +69,7 @@ function prepare_parallel {
         | pigz > $OUTPUT_DIR/parallel.gz
 
     pigz -dc $OUTPUT_DIR/parallel.gz | \
-        split --line-bytes $SHARD_SIZE --numeric-suffixes=0 \
+        split --suffix-length 3 --lines $SHARD_SIZE --numeric-suffixes=0 \
         --additional-suffix '.tsv' - $SHARD_DIR/parallel 
 
     ls $SHARD_DIR/parallel[0-9]*.tsv \
@@ -97,7 +97,7 @@ function prepare_monolingual {
 
 
     pigz -dc $OUTPUT_DIR/mono.gz | \
-        split --line-bytes $SHARD_SIZE --numeric-suffixes=0 \
+        split --suffix-length 3 --lines $SHARD_SIZE --numeric-suffixes=0 \
         --additional-suffix '.pl' - $SHARD_DIR/monolingual
 
     ls $SHARD_DIR/monolingual[0-9]*.pl | parallel --bar --no-notice -j$NCPUS -I% gzip %
