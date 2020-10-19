@@ -8,9 +8,9 @@ vocabs:
     - ../vocab.nben.spm
 beam-size: 4
 normalize: 1.0
-mini-batch: 16
+mini-batch: 64
 mini-batch-words: 500
 maxi-batch: 1000
 maxi-batch-sort: src
 workspace: 5000
-max-lenght-factor: 2.5
+max-length-factor: 2.5
