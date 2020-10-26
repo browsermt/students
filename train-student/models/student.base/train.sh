@@ -1,30 +1,41 @@
 #!/bin/bash -v
 
 # Set GPUs.
-GPUS="0 1 2 3"
-MARIAN=../../marian-dev/build
+# GPUS="0 1 2 3"
+GPUS="0"
+module load use.own
+module load marian/dev-467b15e2
+module load fast_align/cab1e9a
+module load sentencepiece/0.1.92
+module load extract_lex/42fa605
+module load parallel/20131222
 
-SRC=en
-TRG=es
+
+SRC=pl
+TRG=en
+
+set -x
 
 # Add symbolic links to the training files.
 test -e corpus.$SRC.gz || exit 1    # e.g. ../../data/train.en.gz
 test -e corpus.$TRG.gz || exit 1    # e.g. ../../data/train.es.translated.gz
 test -e corpus.aln.gz  || exit 1    # e.g. ../../alignment/corpus.aln.gz
 test -e lex.s2t.gz     || exit 1    # e.g. ../../alignment/lex.s2t.pruned.gz
-test -e vocab.spm      || exit 1    # e.g. ../../data/vocab.spm
+test -e vocab.${SRC}.spm      || exit 1    # e.g. ../../data/vocab.spm
+test -e vocab.${TRG}.spm      || exit 1    # e.g. ../../data/vocab.spm
 
 # Validation set with original source and target sentences (not distilled).
 test -e devset.$SRC || exit 1
 test -e devset.$TRG || exit 1
 
-mkdir -p tmp
+TMPDIR="/local/$USER"
+mkdir -p $TMPDIR
 
-$MARIAN/marian \
-    --model model.npz -c student.tiny11.yml \
-    --train-sets corpus.{$SRC,$TRG}.gz -T ./tmp --shuffle-in-ram \
+marian \
+    --model model.npz -c student.base.yml \
+    --train-sets corpus.{$SRC,$TRG}.gz -T $TMPDIR --shuffle-in-ram \
     --guided-alignment corpus.aln.gz \
-    --vocabs vocab.spm vocab.spm --dim-vocabs 32000 32000 \
+    --vocabs vocab.${SRC}.spm vocab.${TRG}.spm --dim-vocabs 32768 32768 \
     --max-length 200 \
     --exponential-smoothing \
     --mini-batch-fit -w 9000 --mini-batch 1000 --maxi-batch 1000 --devices $GPUS --sync-sgd --optimizer-delay 2 \
