@@ -22,5 +22,5 @@ $MARIAN/marian -c student.tiny11.yml -d 4 5 \
     --valid-mini-batch 16 --beam-size 1 --normalize 1 \
     --early-stopping 20 \
     --overwrite --keep-best \
-    --log train.log --valid-log valid.log --compress-bit 8 --compress-skip-bias
+    --log train.log --valid-log valid.log --quantize-bits 8
  

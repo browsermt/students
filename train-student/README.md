@@ -87,11 +87,7 @@ In order to deliver fast performance on user hardware, we need to quantize our m
 
 	- Compile the relevant marian branch: https://github.com/afaji/Marian/tree/fixed-quant
 
-	- Convert the model to a *fake* 8bit format: 
-
-	`python3 $MARIAN/scripts/simulate-compression.py -i model.npz.best-bleu-detok.npz -b 8 --fixed_point -o model-finetune.npz`
-
-	- Take the training script that you used for producing the student and add the following switches to the marian command: `--compress-bit 8 --compress-skip-bias`. Example is shown in https://github.com/browsermt/students/blob/master/train-student/finetune/run.me.finetune.example.sh. Finetuning is **really** fast. The model's quality is going to start going down after a few thousand mini-batches. Make sure you have frequent validations so that you don't miss the sweet spot!
+	- Take the training script that you used for producing the student and add the following switches to the marian command: `--quantize-bits 8`. Also make sure that `exponential-smoothing` is disabled, since the resulting model is not in 8-bit otherwise. Example is shown in https://github.com/browsermt/students/blob/master/train-student/finetune/run.me.finetune.example.sh. Finetuning is **really** fast. The model's quality is going to start going down after a few thousand mini-batches. Make sure you have frequent validations so that you don't miss the sweet spot!
 
 3. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
 ```bash
