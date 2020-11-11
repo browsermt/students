@@ -1,0 +1,15 @@
+relative-paths: true
+models:
+      - model.npz
+vocabs:
+      - vocab.nnen.spm
+      - vocab.nnen.spm
+beam-size: 1
+normalize: 1.0
+word-penalty: 0
+mini-batch: 64
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 512
+max-length-factor: 2.0
+skip-cost: true

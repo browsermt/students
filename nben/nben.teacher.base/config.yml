@@ -1,0 +1,16 @@
+relative-paths: true
+quiet: true
+
+models:
+    - model.npz
+vocabs:
+    - ../vocab.nben.spm
+    - ../vocab.nben.spm
+beam-size: 4
+normalize: 1.0
+mini-batch: 64
+mini-batch-words: 500
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 5000
+max-length-factor: 2.5

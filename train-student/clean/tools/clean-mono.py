@@ -11,14 +11,7 @@ MAX_LENGTH = 150 # maximum number of words in a sentence
 RATIO_ALPHA_WORDS = 0.4  # minimum fraction of "real" words in a sentence
 RATIO_ALPHA_CHARS = 0.5  # minimum fraction of alpha characters in a sentence
 
-CHARS = {
-    'cs': r'[a-zÁáČčĎďÉéěÍíŇňÓóŘřŠšŤťÚúůÝýŽž]',
-    'en': r'[a-z]',
-    'es': r'[a-zÁáÉéÍíÓóÚúñÑ]',
-    'et': r'[a-zÕõÄäÖöÜü]',
-    'de': r'[a-zÄäÖöÜüß]',
-}
-
+from clean-parallel import CHARS
 
 def main():
     args = parse_user_args()
