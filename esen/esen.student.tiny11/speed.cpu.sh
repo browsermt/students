@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Prevent OneDNN's attempts to parallelize the GEMMs over all threads which is not efficient for the small gemms that we have
+export OMP_NUM_THREADS=1
+
 MARIAN=../../marian-dev/build
 
 SRC=es
