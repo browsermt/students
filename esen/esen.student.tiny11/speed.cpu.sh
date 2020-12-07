@@ -18,10 +18,8 @@ $MARIAN/marian-decoder $@ \
     --relative-paths -m model.npz -v vocab.$SRC$TRG.spm vocab.$SRC$TRG.spm \
     -i speed/newstest2013.$SRC.top10lines -o speed/cpu.newstest2013.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-    --skip-cost --cpu-threads 1 \
-    --quiet --quiet-translation --log speed/cpu.newstest2013.log
-
-#--shortlist lex.s2t.gz 50 50
+    --skip-cost --shortlist lex.s2t 50 50 --cpu-threads 1 \
+    --quiet --log speed/cpu.newstest2013.log
 
 tail -n1 speed/cpu.newstest2013.log
 # Needs the entire input to be useful:
