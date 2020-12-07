@@ -24,4 +24,5 @@ $MARIAN/marian-decoder $@ \
 #--shortlist lex.s2t.gz 50 50
 
 tail -n1 speed/cpu.newstest2013.log
-sacrebleu -t wmt13 -l $SRC-$TRG < speed/cpu.newstest2013.$TRG | tee speed/cpu.newstest2013.$TRG.bleu
+# Needs the entire input to be useful:
+# sacrebleu -t wmt13 -l $SRC-$TRG < speed/cpu.newstest2013.$TRG | tee speed/cpu.newstest2013.$TRG.bleu
