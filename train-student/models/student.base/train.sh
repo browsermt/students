@@ -21,7 +21,7 @@ test -e devset.$TRG || exit 1
 mkdir -p tmp
 
 $MARIAN/marian \
-    --model model.npz -c student.tiny11.yml \
+    --model model.npz -c student.base.yml \
     --train-sets corpus.{$SRC,$TRG}.gz -T ./tmp --shuffle-in-ram \
     --guided-alignment corpus.aln.gz \
     --vocabs vocab.spm vocab.spm --dim-vocabs 32000 32000 \
