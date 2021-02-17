@@ -27,13 +27,29 @@ tar -czvf esen.student.tiny11.tar.gz --transform 's,^,esen.student.tiny11/,' con
 scp esen.student.tiny11.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/esen/
 
 cd ../../isen/isen.student.tiny11
-tar -czvf isen.student.tiny11.tar.gz --transform 's,^,isen.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.isen.spm catalog-entry.yml server.intgemm8bitalpha.yml lex.s2t.gz
+tar -czvf isen.student.tiny11.tar.gz --transform 's,^,isen.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.isen.spm catalog-entry.yml server.intgemm8bitalpha.yml
 scp isen.student.tiny11.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/isen/
 
 cd ../../nben/nben.student.tiny11
-tar -czvf nben.student.tiny11.tar.gz --transform 's,^,nben.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.nben.spm catalog-entry.yml server.intgemm8bitalpha.yml lex.s2t.gz
+tar -czvf nben.student.tiny11.tar.gz --transform 's,^,nben.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.nben.spm catalog-entry.yml server.intgemm8bitalpha.yml
 scp nben.student.tiny11.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/nben/
 
 cd ../../nnen/nnen.student.tiny11
-tar -czvf nnen.student.tiny11.tar.gz --transform 's,^,nnen.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.nnen.spm catalog-entry.yml server.intgemm8bitalpha.yml lex.s2t.gz
+tar -czvf nnen.student.tiny11.tar.gz --transform 's,^,nnen.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.nnen.spm catalog-entry.yml server.intgemm8bitalpha.yml
 scp nnen.student.tiny11.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/nnen/
+
+cd ../../csen/csen.student.base
+tar -czvf csen.student.base.tar.gz --transform 's,^,csen.student.base/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.spm catalog-entry.yml server.intgemm8bitalpha.yml
+scp csen.student.base.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/csen/
+
+cd ../csen.student.tiny11
+tar -czvf csen.student.tiny11.tar.gz --transform 's,^,csen.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.spm catalog-entry.yml server.intgemm8bitalpha.yml
+scp csen.student.tiny11.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/csen/
+
+cd ../encs.student.base
+tar -czvf encs.student.base.tar.gz --transform 's,^,encs.student.base/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.spm catalog-entry.yml server.intgemm8bitalpha.yml
+scp encs.student.base.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/csen/
+
+cd ../encs.student.tiny11
+tar -czvf encs.student.tiny11.tar.gz --transform 's,^,encs.student.tiny11/,' config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz vocab.spm catalog-entry.yml server.intgemm8bitalpha.yml
+scp encs.student.tiny11.tar.gz s1031254@magni.inf.ed.ac.uk:/mnt/vali0/www/data.statmt.org/bergamot/models/csen/
