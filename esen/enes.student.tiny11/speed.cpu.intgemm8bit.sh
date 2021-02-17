@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MARIAN=/home/nbogoych/marian-dev/build_VSCODE
+MARIAN=../../../marian-dev/build
 
 SRC=en
 TRG=es
