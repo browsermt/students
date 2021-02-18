@@ -5,7 +5,7 @@
 | system                                  |  size | BLEU | CPU(s) | GPU(s) |
 | ----------------------------------------| ----- | ---- | ------ | ------ |
 | teacher base beam 6                     | 200MB | 44.9 |   -    |  27.7  |
-| student tiny11, beam 1                  |  49MB | 42.8 |  31.3  |  3.13  |
+| student tiny11, beam 1                  |  49MB | 42.8 |  24.6  |  3.22  |
 | student tiny11, beam 1, intgemm8        |  13MB | 42.6 |  18.9  | - |
 | student tiny11, beam 1, intgemm8alphas  |  13MB | 42.7 |  17.9  | - |
 
