@@ -39,9 +39,18 @@ for data in $@; do
     test -s $data.$SRC$TRG.nrm.uniq.gz || exit 1
 
     ######################################################################
-    # Language identification
+    # Rule-based filtering
     pigz -dc $data.$SRC$TRG.nrm.uniq.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python3 $TOOLS/langid-fasttext.py -f 1 | python3 $TOOLS/langid-fasttext.py -f 1" \
+        | parallel --no-notice --pipe -k -j16 --block 50M "python3 $TOOLS/clean-parallel.py -l1 $SRC -l2 $TRG --debug" \
+        2> $data.$SRC$TRG.clean.debug.txt \
+        | pigz > $data.$SRC$TRG.rule-based.gz
+
+    test -s $data.$SRC$TRG.rule-based.gz || exit 1
+
+    ######################################################################
+    # Language identification
+    pigz -dc $data.$SRC$TRG.rule-based.gz \
+        | parallel --no-notice --pipe -k -j16 --block 50M "python3 -Wi $TOOLS/langid-fasttext.py -f 1 | python3 -Wi $TOOLS/langid-fasttext.py -f 1" \
         | grep -P "^$SRC\t$TRG\t" \
         | cut -f3,4 \
         | pigz > $data.$SRC$TRG.langid.gz
@@ -49,20 +58,21 @@ for data in $@; do
     test -s $data.$SRC$TRG.langid.gz
 
     ######################################################################
-    # Rule-based filtering
-    pigz -dc $data.$SRC$TRG.langid.gz \
-        | parallel --no-notice --pipe -k -j16 --block 50M "python3 $TOOLS/clean-parallel.py -l1 $SRC -l2 $TRG --debug" \
-        2> $data.$SRC$TRG.clean.debug.txt \
-        | pigz > $data.$SRC$TRG.clean.gz
-
-    pigz -dc $data.$SRC$TRG.clean.gz | cut -f1 | pigz > $data.$SRC.clean.gz
-    pigz -dc $data.$SRC$TRG.clean.gz | cut -f2 | pigz > $data.$TRG.clean.gz
+    # Generate clean data in source and target languages
+    # Remove leading and repetitive white spaces
+    pigz -dc $data.$SRC$TRG.langid.gz | cut -f1 | sed -e 's/^[[:space:]]*//' | tr -s " " \
+        | pigz > $data.$SRC.clean.gz
+    pigz -dc $data.$SRC$TRG.langid.gz | cut -f2 | sed -e 's/^[[:space:]]*//' | tr -s " " \
+        | pigz > $data.$TRG.clean.gz
 
     test -s $data.$SRC.clean.gz || exit 1
     test -s $data.$TRG.clean.gz || exit 1
 
+    #pigz -dc $data.$SRC.clean.gz > $data.$SRC.clean
+    #pigz -dc $data.$TRG.clean.gz > $data.$TRG.clean
+
     # Remove $data from intermediate steps
     #rm -f *.nrm.gz *.nrm.uniq.gz *.langid.gz
     #wc -l *.debug.txt
-done
 
+done
