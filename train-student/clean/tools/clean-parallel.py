@@ -9,9 +9,9 @@ import argparse
 # The variables below need to be adjusted for a language pair and dataset.
 # To add a new language, define the list of alpha characters in the dict below.
 
-MIN_LENGTH = 1      # minimum number of words in a sentence
+MIN_LENGTH = 1      # minimum number of words in a sentence, should be > 0
 MAX_LENGTH = 150    # maximum number of words in a sentence
-RATIO_LENGTH = 0.5  # maximum length difference between the source and target sentence
+RATIO_LENGTH = 0.5  # minimum length ratio of source/target and target/source
 
 RATIO_ALPHA_WORDS = 0.4  # minimum fraction of "real" words in a source sentence
 RATIO_ALPHA_CHARS = 0.5  # minimum fraction of alpha characters in a source sentence
