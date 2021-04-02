@@ -59,7 +59,14 @@ def clean_parallel(src, trg, src_lang, trg_lang):
 
     if not src_len or not trg_len:
         return "EMPTY"
-
+    
+    # https://stackoverflow.com/questions/23680976/python-removing-non-latin-characters
+    #if re.search(u'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]', src):
+    #    return "SRC_NON_LATIN"
+    
+    #if re.search(u'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]', trg):
+    #    return "TRG_NON_LATIN"
+    
     ratio_len = src_len / float(trg_len)
     if ratio_len < RATIO_LENGTH or ratio_len > (1. / RATIO_LENGTH):
         return "RATIO_LENGTH"
