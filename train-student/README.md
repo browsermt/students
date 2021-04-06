@@ -85,9 +85,7 @@ In order to deliver fast performance on user hardware, we need to quantize our m
 
 2. Optional, but desireable. Finetune by emulating 8bit GEMM during training. Student models are more difficult to quantize, so you should finetune them to reduce the BLEU hit. 
 
-	- Compile the relevant marian branch: https://github.com/afaji/Marian/tree/fixed-quant
-
-	- Take the training script that you used for producing the student and add the following switches to the marian command: `--quantize-bits 8`. Also make sure that `exponential-smoothing` is disabled. Otherwise, the resulting model would end up not being in an 8-bit format. Example is shown in https://github.com/browsermt/students/blob/master/train-student/finetune/run.me.finetune.example.sh. Finetuning is **really** fast. The model's quality is going to start going down after a few thousand mini-batches. Make sure you have frequent validations so that you don't miss the sweet spot!
+Take the training script that you used for producing the student and add the following switches to the marian command: `--quantize-bits 8`. Also make sure that `exponential-smoothing` is disabled. Otherwise, the resulting model would end up not being in an 8-bit format. Example is shown in https://github.com/browsermt/students/blob/master/train-student/finetune/run.me.finetune.example.sh. Finetuning is **really** fast. The model's quality is going to start going down after a few thousand mini-batches. Make sure you have frequent validations so that you don't miss the sweet spot!
 
 3. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
 ```bash
