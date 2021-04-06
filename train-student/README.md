@@ -85,7 +85,7 @@ In order to deliver fast performance on user hardware, we need to quantize our m
 
 2. Optional, but desireable. Finetune by emulating 8bit GEMM during training. Student models are more difficult to quantize, so you should [finetune](https://github.com/browsermt/students/tree/master/train-student/finetune) them to reduce the BLEU hit. 
 
-You have two choices for intgemm implementation. You can use the [Bergamot branch](https://github.com/browsermt/marian-dev/) of marian, which provides faster decoding, as described in 3.A, or the [marian-dev master](https://github.com/marian-nmt/marian-dev) version of intgemm, which is slower.
+You have two choices for intgemm implementation. You can use the [Bergamot branch](https://github.com/browsermt/marian-dev/) of marian, which provides faster decoding, as described in 3.A, or the [marian-dev master](https://github.com/marian-nmt/marian-dev) version of intgemm, which slower and described in 3.B.
 
 3.A.1 Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
 ```bash
