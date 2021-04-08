@@ -11,6 +11,7 @@ do
 		wget -nc http://data.statmt.org/bergamot/models/8bit-students/$lang/$model/model.8bit-finetuned.intgemm8.bin
 		wget -nc http://data.statmt.org/bergamot/models/8bit-students/$lang/$model/model.8bit-finetuned.intgemm8.alphas.bin
 		wget -nc http://data.statmt.org/bergamot/models/8bit-students/$lang/$model/lex.s2t.gz
+		wget -nc http://data.statmt.org/bergamot/models/8bit-students/$lang/$model/lex.s2t.bin
 		wget -nc http://data.statmt.org/bergamot/models/8bit-students/$lang/$model/vocab.spm
 		cd ..
 	done
