@@ -9,9 +9,9 @@ import argparse
 # The variables below need to be adjusted for a language pair and dataset.
 # To add a new language, define the list of alpha characters in the dict below.
 
-MIN_LENGTH = 1      # minimum number of words in a sentence
+MIN_LENGTH = 1      # minimum number of words in a sentence, should be > 0
 MAX_LENGTH = 150    # maximum number of words in a sentence
-RATIO_LENGTH = 0.5  # maximum length difference between the source and target sentence
+RATIO_LENGTH = 0.5  # minimum length ratio of source/target and target/source
 
 RATIO_ALPHA_WORDS = 0.4  # minimum fraction of "real" words in a source sentence
 RATIO_ALPHA_CHARS = 0.5  # minimum fraction of alpha characters in a source sentence
@@ -59,7 +59,14 @@ def clean_parallel(src, trg, src_lang, trg_lang):
 
     if not src_len or not trg_len:
         return "EMPTY"
-
+    
+    # https://stackoverflow.com/questions/23680976/python-removing-non-latin-characters
+    #if re.search(u'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]', src):
+    #    return "SRC_NON_LATIN"
+    
+    #if re.search(u'[^\x00-\x7F\x80-\xFF\u0100-\u017F\u0180-\u024F\u1E00-\u1EFF]', trg):
+    #    return "TRG_NON_LATIN"
+    
     ratio_len = src_len / float(trg_len)
     if ratio_len < RATIO_LENGTH or ratio_len > (1. / RATIO_LENGTH):
         return "RATIO_LENGTH"
