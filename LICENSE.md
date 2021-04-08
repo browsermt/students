@@ -1,4 +1,16 @@
-MIT License
+# License Terms
+
+## 1 Models
+
+Models produced by the Bergamot project are released under
+the [Creative Commons Attribution Share Alike 4.0](https://creativecommons.org/licenses/by-sa/4.0/) license.
+
+<img src="./cc-by-sa-logo.png" width=90 valign=center>
+
+## 2 Software
+
+Software components in this repository are under the 
+### MIT License
 
 Copyright (c) 2019--2020 University of Edinburgh
 
