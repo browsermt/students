@@ -2,8 +2,8 @@ relative-paths: true
 models:
   - model.intgemm8.bin
 vocabs:
-  - vocab.spm
-  - vocab.spm
+  - vocab.csen.spm
+  - vocab.csen.spm
 beam-size: 1
 normalize: 1.0
 word-penalty: 0
