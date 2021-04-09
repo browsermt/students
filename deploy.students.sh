@@ -9,7 +9,7 @@ for language in cs de es et is nb nn; do
   for pair in ${language}en en${language}; do
     for type in base tiny11; do
       student_model=$pair.student.$type
-      if [[ -d $student_model ]]
+      if [ -d $student_model ]
       then
         cd $student_model
         echo "Deploying $student_model"
