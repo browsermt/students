@@ -1,0 +1,54 @@
+{"models": [
+  {"code" : "encs_tiny", 
+   "name" : "English-Czech tiny",
+   "url"  : "http://data.statmt.org/bergamot/models/csen/encs.student.tiny11.tar.gz"},
+
+   {"code" : "encs_base", 
+    "name" : "English-Czech base",
+    "url"  : "http://data.statmt.org/bergamot/models/csen/encs.student.base.tar.gz"},
+   
+   {"code" : "csen_tiny", 
+    "name" : "Czech-English tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/csen/csen.student.tiny11.tar.gz"},
+
+   {"code" : "csen_base", 
+    "name" : "Czech-English base",
+    "url"  : "http://data.statmt.org/bergamot/models/csen/csen.student.base.tar.gz"},
+   
+   {"code" : "ende_tiny", 
+    "name" : "English-German tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/deen/ende.student.tiny11.tar.gz"},
+
+   {"code" : "ende_base", 
+    "name" : "English-German base",
+    "url"  : "http://data.statmt.org/bergamot/models/deen/ende.student.base.tar.gz"},
+    
+   {"code" : "enes", 
+    "name" : "English-Spanish tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/esen/enes.student.tiny11.tar.gz"},
+     
+   {"code" : "esen", 
+    "name" : "Spanish-English tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/esen/esen.student.tiny11.tar.gz"},
+      
+   {"code" : "enet", 
+    "name" : "English-Estonian tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/eten/enet.student.tiny11.tar.gz"},
+       
+   {"code" : "eten", 
+    "name" : "Estonian-English tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/eten/eten.student.tiny11.tar.gz"},
+        
+   {"code" : "nben", 
+    "name" : "Norwegian (Bokmal)-English tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/nben/nben.student.tiny11.tar.gz"},
+         
+   {"code" : "nnen", 
+    "name" : "Norwegian (Nynorsk)-English tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/nnen/nnen.student.tiny11.tar.gz"},
+
+   {"code" : "isen", 
+    "name" : "Icelandic-English tiny",
+    "url"  : "http://data.statmt.org/bergamot/models/isen/isen.student.tiny11.tar.gz"}
+
+] }

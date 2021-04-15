@@ -13,11 +13,12 @@ for language in cs de es et is nb nn; do
       then
         cd $student_model
         echo "Deploying $student_model"
-        tar -czvf $student_model.tar.gz --transform "s,^,${student_model}/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz lex.s2t.bin vocab.$dir.spm catalog-entry.yml server.intgemm8bitalpha.yml
+        tar -czvf $student_model.tar.gz --transform "s,^,${student_model}/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.gz lex.s2t.bin vocab.$dir.spm catalog-entry.yml server.intgemm8bitalpha.yml model_info.json
         scp $student_model.tar.gz $USER@magni:/mnt/vali0/www/data.statmt.org/bergamot/models/$dir
         cd ..
       fi
     done
   done
   cd ..
+  scp models.json $USER@magni:/mnt/vali0/www/data.statmt.org/bergamot/models/
 done
