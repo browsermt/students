@@ -12,7 +12,7 @@ mkdir -p speed
 if [ ! -f model.intgemm8.alphas.bin ]; then
 
 test -e model.npz.best-bleu-detok.alphas.npz || $MARIAN/marian-decoder $@ \
-    --relative-paths -m model.npz.best-bleu-detok.npz -v vocab.spm vocab.spm \
+    --relative-paths -m model.npz.best-bleu-detok.npz -v vocab.csen.spm vocab.csen.spm \
     -i speed/newstest2018.$SRC -o speed/cpu.newstest2018.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
     --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
@@ -28,7 +28,7 @@ do
     ~/.local/bin/sacrebleu -t $wmt -l $SRC-$TRG --echo src > speed/newstest.$wmt.$SRC
     echo "### Translating $wmt $SRC-$TRG on CPU"
     $MARIAN/marian-decoder $@ \
-        --relative-paths -m model.intgemm8.alphas.bin -v vocab.spm vocab.spm \
+        --relative-paths -m model.intgemm8.alphas.bin -v vocab.csen.spm vocab.csen.spm \
         -i speed/newstest.$wmt.$SRC -o speed/cpu.newstest.$wmt.$TRG \
         --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
         --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \

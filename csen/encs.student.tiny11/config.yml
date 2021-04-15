@@ -1,9 +1,9 @@
 relative-paths: true
 models:
-  - model.8bit-finetuned.npz
+  - model.npz
 vocabs:
-  - vocab.spm
-  - vocab.spm
+  - vocab.csen.spm
+  - vocab.csen.spm
 shortlist:
     - lex.s2t.gz
     - 50
