@@ -1,5 +1,9 @@
 {
   "modelName": "Norwegian (Bokmal)-English tiny",
-  "shortname": "nb-en",
-  "type":      "tiny"
+  "shortname": "nb-en-tiny",
+  "type":      "tiny",
+  "src":       "Norwegian (Bokmal)",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
 }

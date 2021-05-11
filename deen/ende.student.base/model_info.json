@@ -1,5 +1,9 @@
 {
   "modelName": "English-German base",
-  "shortname": "en-de",
-  "type":      "base"
+  "shortname": "en-de-base",
+  "type":      "base",
+  "src":       "English",
+  "trg":       "German",
+  "version":   1.0,
+  "API":       1.0
 }

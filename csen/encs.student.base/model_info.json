@@ -1,5 +1,9 @@
 {
   "modelName": "English-Czech base",
-  "shortname": "en-cs",
-  "type":      "base"
+  "shortname": "en-cs-base",
+  "type":      "base",
+  "src":       "English",
+  "trg":       "Czech",
+  "version":   1.0,
+  "API":       1.0
 }

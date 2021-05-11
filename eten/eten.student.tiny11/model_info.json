@@ -1,5 +1,9 @@
 {
   "modelName": "Estonian-English tiny",
-  "shortname": "et-en",
-  "type":      "tiny"
+  "shortname": "et-en-tiny",
+  "type":      "tiny",
+  "src":       "Estonian",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
 }

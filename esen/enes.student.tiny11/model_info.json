@@ -1,5 +1,9 @@
 {
   "modelName": "English-Spanish tiny",
-  "shortname": "en-es",
-  "type":      "tiny"
+  "shortname": "en-es-tiny",
+  "type":      "tiny",
+  "src":       "English",
+  "trg":       "Spanish",
+  "version":   1.0,
+  "API":       1.0
 }
