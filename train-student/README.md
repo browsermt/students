@@ -93,7 +93,7 @@ $MARIAN/marian-decoder \
             --relative-paths -m model-finetune.npz.best-bleu-detok.npz -v vocab.spm vocab.spm --dump-quantmult \
             -i speed_intgemm/input.en -o speed_intgemm/output.de \
             --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-            --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+            --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt16.log 2> quantmults
 ```
 Furthermore `--int8shiftAlphaAll` is the relevant switches to get the fastest intgemm decoding.
@@ -114,7 +114,7 @@ $MARIAN/marian-decoder \
             --relative-paths -m model-finetune.intgemm.alphas.bin -v vocab.spm vocab.spm --int8shiftAlphaAll \
             -i speed_intgemm/input.en -o speed_intgemm/output.de  \
             --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-            --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+            --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt$i.log
 ```
 
@@ -135,6 +135,6 @@ $MARIAN/marian-decoder \
             --relative-paths -m model-finetune.intgemm.bin -v vocab.spm vocab.spm \
             -i speed_intgemm/input.en -o speed_intgemm/output.de  \
             --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-            --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+            --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt$i.log
 ```
