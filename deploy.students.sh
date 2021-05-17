@@ -26,3 +26,8 @@ for language in cs de es et is nb nn; do
   cd ..
   scp models.json $USER@lofn:/mnt/vali0/www/data.statmt.org/bergamot/models/
 done
+
+# Deploy a special model for use by bergamot-translator-tests https://github.com/browsermt/bergamot-translator-tests
+cd deen/ende.student.tiny11
+tar -czvf ende.student.tiny.forregtest.tar.gz --transform "s,^,ende.student.tiny.forregtest/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.* vocab* catalog-entry.yml model_info.json
+scp ende.student.tiny.forregtest.tar.gz $USER@magni:/mnt/vali0/www/data.statmt.org/bergamot/models/deen
