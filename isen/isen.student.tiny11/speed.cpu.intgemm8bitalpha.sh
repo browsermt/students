@@ -17,7 +17,7 @@ for prefix in ted-test; do
             --relative-paths -m model.npz -v vocab.$SRC$TRG.spm vocab.$SRC$TRG.spm \
             -i $DATA/$prefix.$SRC -o speed/$prefix.$TRG.out \
             --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-            --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+            --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
             --quiet --quiet-translation --log speed/$prefix.log --dump-quantmult  2> quantmults
 
         test -e model.alphas.npz || $MARIAN/../scripts/alphas/extract_stats.py quantmults model.npz model.alphas.npz

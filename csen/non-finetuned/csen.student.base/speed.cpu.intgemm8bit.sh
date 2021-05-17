@@ -17,7 +17,7 @@ do
         --relative-paths -m model.intgemm8.bin -v vocab.csen.spm vocab.csen.spm \
         -i speed/newstest.$wmt.$SRC -o speed/cpu.newstest.$wmt.$TRG \
         --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-        --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+        --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
         --quiet --quiet-translation --log speed/cpu.newstest.$wmt.log --int8shift
 
     tail -n1 speed/cpu.newstest.$wmt.log

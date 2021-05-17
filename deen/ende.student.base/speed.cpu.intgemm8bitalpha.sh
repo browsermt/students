@@ -15,7 +15,7 @@ test -e model.alphas.npz || $MARIAN/marian-decoder $@ \
     --relative-paths -m model.npz -v vocab.$TRG$SRC.spm vocab.$TRG$SRC.spm \
     -i speed/newstest2019.$SRC -o speed/cpu.newstest2019.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-    --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+    --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
     --quiet --quiet-translation --log speed/cpu.newstest2019.log --dump-quantmult  2> quantmults
 
 test -e model.alphas.npz || $MARIAN/../scripts/alphas/extract_stats.py quantmults model.npz model.alphas.npz
@@ -28,7 +28,7 @@ $MARIAN/marian-decoder $@ \
     --relative-paths -m model.intgemm.alphas.bin -v vocab.$TRG$SRC.spm vocab.$TRG$SRC.spm \
     -i speed/newstest2019.$SRC -o speed/cpu.newstest2019.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
-    --skip-cost --shortlist lex.s2t.gz 50 50 --cpu-threads 1 \
+    --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
     --quiet --quiet-translation --log speed/cpu.newstest2019.log --int8shiftAlphaAll
 
 tail -n1 speed/cpu.newstest2019.log
