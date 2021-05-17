@@ -5,9 +5,8 @@ vocabs:
   - vocab.eten.spm
   - vocab.eten.spm
 shortlist:
-    - lex.s2t.gz
-    - 50
-    - 50
+    - lex.s2t.bin
+    - false
 beam-size: 1
 normalize: 1.0
 word-penalty: 0
@@ -21,4 +20,3 @@ source-language: Estonian
 target-language: English
 ssplit-prefix-file: "${SSPLIT_ROOT_DIR}/nonbreaking_prefixes/nonbreaking_prefix.et"
 qe-sentence-level-thresholds: []
-
