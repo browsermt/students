@@ -5,9 +5,8 @@ vocabs:
       - vocab.isen.spm
       - vocab.isen.spm
 shortlist:
-    - lex.s2t.gz
-    - 50
-    - 50
+    - lex.s2t.bin
+    - false
 beam-size: 1
 normalize: 1.0
 word-penalty: 0
