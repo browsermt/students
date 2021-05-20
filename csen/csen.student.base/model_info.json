@@ -1,6 +1,6 @@
 {
   "modelName": "Czech-English base",
-  "shortname": "cs-en-base",
+  "shortName": "cs-en-base",
   "type":      "base",
   "src":       "Czech",
   "trg":       "English",

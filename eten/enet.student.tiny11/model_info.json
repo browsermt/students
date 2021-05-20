@@ -1,6 +1,6 @@
 {
   "modelName": "English-Estonian tiny",
-  "shortname": "en-et-tiny",
+  "shortName": "en-et-tiny",
   "type":      "tiny",
   "src":       "English",
   "trg":       "Estonian",

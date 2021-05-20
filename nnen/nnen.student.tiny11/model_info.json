@@ -1,6 +1,6 @@
 {
   "modelName": "Norwegian (Nynorsk)-English tiny",
-  "shortname": "nn-en-tiny",
+  "shortName": "nn-en-tiny",
   "type":      "tiny",
   "src":       "Norwegian (Nynorsk)",
   "trg":       "English",

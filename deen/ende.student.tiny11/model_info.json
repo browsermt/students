@@ -1,6 +1,6 @@
 {
   "modelName": "English-German tiny",
-  "shortname": "en-de-tiny",
+  "shortName": "en-de-tiny",
   "type":      "tiny",
   "src":       "English",
   "trg":       "German",

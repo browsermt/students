@@ -20,7 +20,7 @@ def load_and_append(jsonin_path_models: str, model_dir: str, base_dir: str, url_
     inmodel.close()
 
     # Construct URL and append it to the json
-    src, trg, modeltype = additional_json["shortname"].split('-')
+    src, trg, modeltype = additional_json["shortName"].split('-')
     if modeltype == "tiny":
         modeltype = "tiny11" # The url for the tiny model contains tiny11
 
@@ -29,7 +29,7 @@ def load_and_append(jsonin_path_models: str, model_dir: str, base_dir: str, url_
 
     #include legacy namings so that we don't break the current interface
     additional_json["name"] = additional_json["modelName"]
-    additional_json["code"] = additional_json["shortname"]
+    additional_json["code"] = additional_json["shortName"]
 
     # Put it in the json and regenerate it
     current_json['models'].append(additional_json)

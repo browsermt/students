@@ -1,6 +1,6 @@
 {
   "modelName": "English-German base",
-  "shortname": "en-de-base",
+  "shortName": "en-de-base",
   "type":      "base",
   "src":       "English",
   "trg":       "German",

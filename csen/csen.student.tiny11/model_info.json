@@ -1,6 +1,6 @@
 {
   "modelName": "Czech-English tiny",
-  "shortname": "cs-en-tiny",
+  "shortName": "cs-en-tiny",
   "type":      "tiny",
   "src":       "Czech",
   "trg":       "English",

@@ -1,6 +1,6 @@
 {
   "modelName": "Norwegian (Bokmal)-English tiny",
-  "shortname": "nb-en-tiny",
+  "shortName": "nb-en-tiny",
   "type":      "tiny",
   "src":       "Norwegian (Bokmal)",
   "trg":       "English",

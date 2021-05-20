@@ -1,6 +1,6 @@
 {
   "modelName": "Icelandic-English tiny",
-  "shortname": "is-en-tiny",
+  "shortName": "is-en-tiny",
   "type":      "tiny",
   "src":       "Icelandic",
   "trg":       "English",
