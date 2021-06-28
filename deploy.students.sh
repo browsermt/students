@@ -19,7 +19,7 @@ for language in cs de es et is nb nn; do
         tar -czvf $student_model.tar.gz --transform "s,^,${student_model}/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.bin vocab.$dir.spm catalog-entry.yml model_info.json
         scp $student_model.tar.gz $USER@magni:/mnt/vali0/www/data.statmt.org/bergamot/models/$dir
         cd ..
-        ../generate_models_json.py ../models.json $student_model $dir $URLBASE
+        ../generate_models_json.py ../models.json $student_model/$student_model.tar.gz $student_model $dir $URLBASE
       fi
     done
   done
