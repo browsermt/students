@@ -68,6 +68,25 @@ details.
 - Prepare corpus and adjust variables in `alignment/generate-alignment-and-shortlist.sh`.
 - Generate word alignment and lexical shortlists running the script.
 
+It is recommended to convert the text lexical shortlist to a binary shortlist using `marian-conv` from 
+[Bergamot branch](https://github.com/browsermt/marian-dev/) of marian with `--shortlist,-s` option.
+As the binary shortlist can greatly improve the lexical shortlist loading time (x4k speed-up).
+A usage example of shortlist conversion is as follows:
+```bash
+./marian-conv --shortlist lex.esen.s2t 100 100 0 \    # text shortlist: path first best prune
+               --dump lex.esen.bin \                  # binary shortlist: path
+               --vocabs vocab.esen.spm vocab.esen.spm # source and target vocab path
+```
+The parameters of `100 100 0` are the firstNum, bestNum, and prune threshold
+you would like to use with the lexical shortlists 
+(Those parameters will be baked into the binary shortlist header).
+To use a binary shortlist, you need to provide the file path and 
+whether the file needs checking (optional; true by default). 
+  For example:
+```
+--shortlist lex.esen.bin false
+``` 
+
 ### 4. Training a student model
 
 - Collect training data in `models/student.*`, see `train.sh` for more details.
