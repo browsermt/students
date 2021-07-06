@@ -1,0 +1,5 @@
+name: "bergamot/faen.student.tiny11"
+curator: { name: "Sukanta Sen", contact: "ssen@ed.ac.uk" }
+license: "CC-BY-SA-NC-4.0"
+webpage: "http://data.statmt.org/bergamot/models/faen/"
+description: "Farsi-English Tiny Transformer Student Model"

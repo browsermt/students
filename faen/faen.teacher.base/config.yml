@@ -1,0 +1,15 @@
+relative-paths: true
+models:
+  - model1.npz
+  - model2.npz
+  - model3.npz
+  - model4.npz
+vocabs:
+  - vocab.faen.yml
+  - vocab.faen.yml
+beam-size: 6
+normalize: 1.0
+word-penalty: 0
+mini-batch: 64
+maxi-batch: 100
+maxi-batch-sort: src
