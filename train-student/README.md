@@ -105,7 +105,7 @@ Optional, but desireable: finetune by emulating 8bit GEMM during training. Stude
 
 You have two choices for intgemm implementation. You can use the [Bergamot branch](https://github.com/browsermt/marian-dev/) of marian, which provides faster decoding or the [marian-dev master](https://github.com/marian-nmt/marian-dev) version of intgemm, which slower and described later.
 
-#### Bergamot quantization
+#### Bergamot fork (faster)
 
 1. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. **IMPORTANT** CPU threads must be set to 1 for this step. A typical marian command would look like this:
 ```bash
