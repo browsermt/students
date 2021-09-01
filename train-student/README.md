@@ -97,16 +97,17 @@ Make sure the training data is not contaminated with sentences from the
 validation set.  It is recommended to use a larger validation set, e.g.
 concatenate a few newsdev sets.
 
-### 5. Optional 8bit quantization.
+### 5. 8-bit quantization
+
 In order to deliver fast performance on user hardware, we need to quantize our models to 8bit. For more information check  https://www.aclweb.org/anthology/2020.ngt-1.26/
 
-1. Train your desired student model
+Optional, but desireable: finetune by emulating 8bit GEMM during training. Student models are more difficult to quantize, so you should [finetune](https://github.com/browsermt/students/tree/master/train-student/finetune) them to reduce the BLEU hit. 
 
-2. Optional, but desireable. Finetune by emulating 8bit GEMM during training. Student models are more difficult to quantize, so you should [finetune](https://github.com/browsermt/students/tree/master/train-student/finetune) them to reduce the BLEU hit. 
+You have two choices for intgemm implementation. You can use the [Bergamot branch](https://github.com/browsermt/marian-dev/) of marian, which provides faster decoding or the [marian-dev master](https://github.com/marian-nmt/marian-dev) version of intgemm, which slower and described later.
 
-You have two choices for intgemm implementation. You can use the [Bergamot branch](https://github.com/browsermt/marian-dev/) of marian, which provides faster decoding, as described in 3.A, or the [marian-dev master](https://github.com/marian-nmt/marian-dev) version of intgemm, which slower and described in 3.B.
+#### Bergamot quantization
 
-3.A.1 Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. A typical marian command would look like this:
+1. Decode a sample test set in order to get typical quantization values. The relevant switch here is `--dump-quantmult`. **IMPORTANT** CPU threads must be set to 1 for this step. A typical marian command would look like this:
 ```bash
 $MARIAN/marian-decoder \
             --relative-paths -m model-finetune.npz.best-bleu-detok.npz -v vocab.spm vocab.spm --dump-quantmult \
@@ -115,18 +116,14 @@ $MARIAN/marian-decoder \
             --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
             --quiet --quiet-translation --log speed_intgemm/cpu.wmt16.log 2> quantmults
 ```
-Furthermore `--int8shiftAlphaAll` is the relevant switches to get the fastest intgemm decoding.
-
-3.A.2 Produce a model that includes the extra quantized values in it and the quantize it to 8 bits:
+2. Produce a model that includes the extra quantized values in it and the quantize it to 8 bits:
 ```bash
 $MARIAN/../scripts/alphas/extract_stats.py quantmults model-finetune.npz.best-bleu-detok.npz model-finetune.npz.best-bleu-detok.alphas.npz
 $MARIAN/marian-conv -f model-finetune.npz.best-bleu-detok.alphas.npz -t model-finetune.intgemm.alphas.bin --gemm-type intgemm8
 ```
 Note, that you can fine tune the quantization procedure inside `extract_stats.py:53` By changing the hardcoded `+1.1*STDDEV` value. Anything from -1 to +2 seems to work to varying degrees.
 
-**IMPORTANT** CPU threads must be set to 1 for this step.
-
-3.A.3 Decode using the new model:
+3. Decode using the new model:
 
 ```bash
 $MARIAN/marian-decoder \
@@ -141,7 +138,8 @@ The relevant intgemm switch is: `--int8shiftAlphaAll`. You can use as many threa
 
 Alternatively, you could use the [marian-dev master](https://github.com/marian-nmt/marian-dev) version of intgemm, which is slower.
 
-3.B Convert the model to the intgemm8 format
+
+#### Marian master (slower)
 
 ```bash
 $MARIAN/marian-conv -f model-finetune.npz.best-bleu-detok.npz -t model-finetune.intgemm.alphas.bin --gemm-type intgemm8
