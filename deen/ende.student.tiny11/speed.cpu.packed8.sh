@@ -2,7 +2,7 @@
 
 set -e
 
-MARIAN=../../marian-dev/build
+MARIAN=~/marian-dev-browsermt-fbgemm/build
 
 SRC=en
 TRG=de
