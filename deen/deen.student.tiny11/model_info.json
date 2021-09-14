@@ -1,0 +1,9 @@
+{
+  "modelName": "German-English tiny",
+  "shortName": "de-en-tiny",
+  "type":      "tiny",
+  "src":       "German",
+  "trg":       "English",
+  "version":   2.0,
+  "API":       1.0
+}

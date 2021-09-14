@@ -1,6 +1,6 @@
 #!/bin/bash
 
-MARIAN=../../marian-dev/build
+MARIAN=~/marian-dev-browsermt/build
 
 SRC=en
 TRG=de

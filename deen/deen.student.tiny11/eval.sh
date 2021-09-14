@@ -4,8 +4,8 @@ set -e
 
 MARIAN=~/marian-dev-browsermt/build
 
-SRC=en
-TRG=de
+SRC=de
+TRG=en
 
 mkdir -p eval
 
