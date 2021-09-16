@@ -10,7 +10,7 @@ shortlist:
 beam-size: 1
 normalize: 1.0
 word-penalty: 0
-mini-batch: 64
+mini-batch: 32
 maxi-batch: 1000
 maxi-batch-sort: src
 workspace: 2000

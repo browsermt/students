@@ -2,8 +2,8 @@
 
 MARIAN=~/marian-dev-browsermt/build
 
-SRC=en
-TRG=de
+SRC=de
+TRG=en
 
 mkdir -p speed
 
@@ -11,7 +11,7 @@ sacrebleu -t wmt19 -l $SRC-$TRG --echo src > speed/newstest2019.$SRC
 
 echo "### Translating wmt19 $SRC-$TRG on CPU"
 $MARIAN/marian-decoder $@ \
-    --relative-paths -m model.npz -v vocab.$TRG$SRC.spm vocab.$TRG$SRC.spm \
+    --relative-paths -m model.npz -v vocab.$SRC$TRG.spm vocab.$SRC$TRG.spm \
     -i speed/newstest2019.$SRC -o speed/cpu.newstest2019.$TRG \
     --beam-size 1 --mini-batch 32 --maxi-batch 100 --maxi-batch-sort src -w 128 \
     --skip-cost --shortlist lex.s2t.bin false --cpu-threads 1 \
