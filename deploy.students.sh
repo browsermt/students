@@ -6,7 +6,7 @@ export URLBASE="http://data.statmt.org/bergamot/models"
 
 # Deploy student models
 rm -rf models.json # Remove old generated models
-for language in cs de es et is nb nn; do
+for language in cs de es et is nb nn fa; do
   dir=${language}en
   cd $dir
   for pair in ${language}en en${language}; do
