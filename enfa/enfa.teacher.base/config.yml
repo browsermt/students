@@ -1,0 +1,12 @@
+relative-paths: true
+models:
+  - model.npz
+vocabs:
+  - vocab.enfa.yml
+  - vocab.enfa.yml
+beam-size: 6
+normalize: 1.0
+word-penalty: 0
+mini-batch: 64
+maxi-batch: 100
+maxi-batch-sort: src

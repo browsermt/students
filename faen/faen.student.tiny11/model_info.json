@@ -1,0 +1,9 @@
+{
+  "modelName": "Farsi-English tiny",
+  "shortName": "fa-en-tiny",
+  "type":      "tiny",
+  "src":       "Farsi",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}
