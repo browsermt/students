@@ -2,7 +2,7 @@
 
 set -e
 
-export URLBASE="http://data.statmt.org/bergamot/models"
+export URLBASE="https://data.statmt.org/bergamot/models"
 
 # Deploy student models
 rm -rf models.json # Remove old generated models
