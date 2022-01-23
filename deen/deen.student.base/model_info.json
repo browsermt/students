@@ -4,6 +4,7 @@
   "type":      "base",
   "src":       "German",
   "trg":       "English",
-  "version":   2.0,
-  "API":       1.0
+  "repository": "Bergamot",
+  "version":   2,
+  "API":       1
 }

@@ -1,0 +1,5 @@
+name: "bergamot/deen.student.base"
+curator: { name: "Maximiliana Behnke", contact: "maximiliana.behnke@ed.ac.uk" }
+license: "CC-BY-SA-NC-4.0"
+webpage: "http://statmt.org/bergamot/models/scripts/ende/"
+description: "German-English Basic Transformer Student Model"

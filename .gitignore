@@ -12,3 +12,13 @@ eval/
 speed/
 quantmults
 models.json
+
+# faen/enfa specific gitignore since they are downloaded by the scripts
+enfa/enfa.teacher.base/enfa.bpe
+enfa/enfa.teacher.base/tc.en
+enfa/enfa.teacher.base/tc.fa
+enfa/enfa.teacher.base/vocab.enfa.yml
+faen/faen.teacher.base/faen.bpe
+faen/faen.teacher.base/tc.en
+faen/faen.teacher.base/tc.fa
+faen/faen.teacher.base/vocab.faen.yml
