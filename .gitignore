@@ -22,3 +22,13 @@ faen/faen.teacher.base/faen.bpe
 faen/faen.teacher.base/tc.en
 faen/faen.teacher.base/tc.fa
 faen/faen.teacher.base/vocab.faen.yml
+
+# bgen/enbg specific gitignore since they are downloaded by the scripts
+bgen/bgen.student.teacher0/
+bgen/bgen.student.teacher1/
+bgen/bgen.student.tiny11-nonfinetune/model.npz.decoder.yml
+bgen/bgen.student.tiny11/model.npz.decoder.yml
+bgen/enbg.student.teacher0/
+bgen/enbg.student.teacher1/
+bgen/enbg.student.tiny11-nonfinetune/model.npz.decoder.yml
+bgen/enbg.student.tiny11/model.npz.decoder.yml

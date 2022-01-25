@@ -1,0 +1,5 @@
+name: "bergamot/bgen.student.tiny"
+curator: { name: "Nikolay Bogoychev", contact: "n.bogoych@ed.ac.uk" },
+license: "CC-BY-SA-NC-4.0"
+webpage: "https://github.com/browsermt/students/tree/master/bgen"
+description: "Bulgarian-English Tiny Transformer Student Model"

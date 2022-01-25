@@ -1,0 +1,10 @@
+{
+  "modelName": "English-Bulgarian tiny",
+  "shortName": "en-bg-tiny",
+  "type":      "tiny",
+  "src":       "English",
+  "trg":       "Bulgarian",
+  "repository": "Bergamot",
+  "version":   1,
+  "API":       1
+}
