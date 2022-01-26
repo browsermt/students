@@ -13,8 +13,9 @@
 | Student-tiny11-8bit-alpha + shortlist                    | 44.5 | 68.9 |
 | Student-tiny11-finetuned-8bit + shortlist                | 44.7 | 69.0 |
 | Student-tiny11-finetuned-8bit-alpha + shortlist          | 44.6 | 69.0 |
-| ---------------------------------------------------------|:----:|:----:|
+
 | **en-bg** ELRC-corpora_state_administration_sites-1-bul-eng | BLEU | CHRF |
+| ---------------------------------------------------------|:----:|:----:|
 | Teacher0                                                 | 47.3 | 71.6 |
 | Teacher1                                                 | 46.9 | 71.2 |
 | Teacher ensemble                                         | 47.3 | 71.7 |
