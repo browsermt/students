@@ -38,5 +38,5 @@ done
 
 # Deploy a special model for use by bergamot-translator-tests https://github.com/browsermt/bergamot-translator-tests
 cd deen/ende.student.tiny11
-tar -czvf ende.student.tiny.for.regression.tests.tar.gz --transform "s,^,ende.student.tiny.for.regression.tests/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.* vocab* catalog-entry.yml model_info.json
+tar -czvf ende.student.tiny.for.regression.tests.tar.gz --transform "s,^,ende.student.tiny.for.regression.tests/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.* vocab* catalog-entry.yml model_info.json model.npz config.yml
 scp ende.student.tiny.for.regression.tests.tar.gz $USER@lofn:/mnt/vali0/www/data.statmt.org/bergamot/models/deen
