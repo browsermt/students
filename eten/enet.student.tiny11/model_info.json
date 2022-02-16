@@ -4,6 +4,8 @@
   "type":      "tiny",
   "src":       "English",
   "trg":       "Estonian",
+  "srcTags":   {"en": "English"},
+  "trgTag":    "et",
   "repository": "Bergamot",
   "version":   1,
   "API":       1

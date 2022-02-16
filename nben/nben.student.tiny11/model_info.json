@@ -4,6 +4,8 @@
   "type":      "tiny",
   "src":       "Norwegian (Bokmal)",
   "trg":       "English",
+  "srcTags":   {"nb": "Norwegian (Bokmål)"},
+  "trgTag":    "en",
   "repository": "Bergamot",
   "version":   1,
   "API":       1

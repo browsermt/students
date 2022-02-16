@@ -4,6 +4,8 @@
   "type":      "tiny",
   "src":       "Icelandic",
   "trg":       "English",
+  "srcTags":   {"is": "Icelandic"},
+  "trgTag":    "en",
   "repository": "Bergamot",
   "version":   1,
   "API":       1
