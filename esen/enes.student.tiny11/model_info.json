@@ -4,6 +4,8 @@
   "type":      "tiny",
   "src":       "English",
   "trg":       "Spanish",
+  "srcTags":   {"en": "English"},
+  "trgTag":    "es",
   "repository": "Bergamot",
   "version":   1,
   "API":       1

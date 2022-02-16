@@ -4,6 +4,8 @@
   "type":      "tiny",
   "src":       "English",
   "trg":       "Farsi",
+  "srcTags":   {"en": "English"},
+  "trgTag":    "fa",
   "repository": "Bergamot",
   "version":   1,
   "API":       1

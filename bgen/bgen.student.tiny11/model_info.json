@@ -4,6 +4,8 @@
   "type":      "tiny",
   "src":       "Bulgarian",
   "trg":       "English",
+  "srcTags":   {"bg": "Bulgarian"},
+  "trgTag":    "en",
   "repository": "Bergamot",
   "version":   1,
   "API":       1
