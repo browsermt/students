@@ -1,8 +1,8 @@
 {
-  "modelName": "Norwegian (Bokmal)-English tiny",
+  "modelName": "Norwegian (Bokmål)-English tiny",
   "shortName": "nb-en-tiny",
   "type":      "tiny",
-  "src":       "Norwegian (Bokmal)",
+  "src":       "Norwegian (Bokmål)",
   "trg":       "English",
   "srcTags":   {"nb": "Norwegian (Bokmål)"},
   "trgTag":    "en",
