@@ -1,0 +1,5 @@
+name: "bergamot/plen.student.base"
+curator: { name: "Ulrich Germann", contact: "ugermann@ed.ac.uk" }
+license: "CC-BY-SA-4.0"
+webpage: "http://data.statmt.org/bergamot/models/"
+description: "Polish-English Tiny Transformer Student Model"

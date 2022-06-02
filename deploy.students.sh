@@ -14,7 +14,7 @@ done
 
 # Deploy student models
 rm -rf models.json # Remove old generated models
-for language in cs de es et is nb nn bg; do
+for language in cs de es et is nb nn bg pl; do
   dir=${language}en
   cd $dir
   for pair in ${language}en en${language}; do
