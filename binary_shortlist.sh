@@ -15,7 +15,7 @@ for i in $(find * -maxdepth 1 -type d | grep  ".*/.*.student.*."); do
   echo $i
   cd $i
   vocab_file=$(ls vocab*)
-  $MARIAN_CONV --shortlist lex.s2t.gz 50 50 0 --dump lex.s2t.bin --vocabs $vocab_file $vocab_file
+  $MARIAN_CONV --shortlist lex.s2t.gz 100 100 0 --dump lex.s2t.bin --vocabs $vocab_file $vocab_file
   cd ../..
 done
 
