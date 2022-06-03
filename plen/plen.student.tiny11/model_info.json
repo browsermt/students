@@ -1,0 +1,12 @@
+{
+  "modelName": "Polsh-English tiny",
+  "shortName": "pl-en-tiny",
+  "type":      "tiny",
+  "src":       "Polish",
+  "trg":       "English",
+  "srcTags":   {"pl": "Polish"},
+  "trgTag":    "en",
+  "repository": "Bergamot",
+  "version":   1,
+  "API":       1
+}
