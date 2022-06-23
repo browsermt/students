@@ -1,0 +1,18 @@
+relative-paths: true
+models:
+  - model.intgemm.alphas.bin
+vocabs:
+  - vocab.fren.spm
+  - vocab.fren.spm
+shortlist:
+    - lex.s2t.bin
+    - false
+beam-size: 1
+normalize: 1.0
+word-penalty: 0
+mini-batch: 32
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 2000
+max-length-factor: 2.5
+gemm-precision: int8shiftAlphaAll

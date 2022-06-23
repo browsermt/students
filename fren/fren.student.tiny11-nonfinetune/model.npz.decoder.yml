@@ -1,0 +1,17 @@
+relative-paths: true
+models:
+  - model.npz
+vocabs:
+  - vocab.fren.spm
+  - vocab.fren.spm
+beam-size: 1
+normalize: 1
+word-penalty: 0
+mini-batch: 24
+maxi-batch: 100
+maxi-batch-sort: src
+shortlist:
+  - lex.s2t.pruned.gz
+  - 100
+  - 100
+

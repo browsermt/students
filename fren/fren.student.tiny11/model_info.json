@@ -1,0 +1,12 @@
+{
+  "modelName": "English-French tiny",
+  "shortName": "en-fr-tiny",
+  "type":      "tiny",
+  "src":       "English",
+  "trg":       "French",
+  "srcTags":   {"en": "English"},
+  "trgTag":    "fr",
+  "repository": "Bergamot",
+  "version":   1,
+  "API":       1
+}
