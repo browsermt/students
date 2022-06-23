@@ -22,8 +22,8 @@ for lang in bgen enbg
 do
         for model in teacher0 teacher1
         do
-                mkdir -p $lang.student.$model
-                cd $lang.student.$model
+                mkdir -p $lang.$model
+                cd $lang.$model
                 wget -nc http://data.statmt.org/bergamot/models/bgen/$lang/$model/model.npz
                 wget -nc http://data.statmt.org/bergamot/models/bgen/$lang/$model/model.npz.decoder.yml
                 wget -nc http://data.statmt.org/bergamot/models/bgen/$lang/$model/vocab.bgen.spm
