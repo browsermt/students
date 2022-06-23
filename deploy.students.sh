@@ -7,7 +7,7 @@ export URLBASE="https://data.statmt.org/bergamot/models"
 # Fetch student models
 for download_script in */download-models.sh ; do
   cd `dirname ${download_script}`
-  echo "Downloading `dirname csen/download-models.sh`"
+  echo "Downloading `dirname ${download_script}/download-models.sh`"
   sh download-models.sh
   cd ..
 done
@@ -25,7 +25,7 @@ for language in cs de es et is nb nn bg pl; do
         cd $student_model
         echo "Deploying $student_model"
         rm -rf $student_model.tar.gz # Remove old model if it exists
-        tar -czvf $student_model.tar.gz --transform "s,^,${student_model}/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.bin vocab.$dir.spm catalog-entry.yml model_info.json
+        tar -czvf --owner=0 --group=0 $student_model.tar.gz --transform "s,^,${student_model}/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.bin vocab.$dir.spm catalog-entry.yml model_info.json
         scp $student_model.tar.gz $USER@lofn:/mnt/vali0/www/data.statmt.org/bergamot/models/$dir
         cd ..
         ../generate_models_json.py ../models.json $student_model/$student_model.tar.gz $student_model $dir $URLBASE
