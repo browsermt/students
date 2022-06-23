@@ -1,11 +1,11 @@
 {
-  "modelName": "English-French tiny",
-  "shortName": "en-fr-tiny",
+  "modelName": "French-English tiny",
+  "shortName": "fr-en-tiny",
   "type":      "tiny",
-  "src":       "English",
-  "trg":       "French",
-  "srcTags":   {"en": "English"},
-  "trgTag":    "fr",
+  "src":       "French",
+  "trg":       "English",
+  "srcTags":   {"fr": "French"},
+  "trgTag":    "en",
   "repository": "Bergamot",
   "version":   1,
   "API":       1
