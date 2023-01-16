@@ -1,6 +1,6 @@
 name: "bergamot/encs.student.base"
 curator: [{ name: "Radina Dobreva", contact: "rdobreva@exseed.ed.ac.uk" },
 { name: "Ulrich Germann", contact: "ugermann@exseed.ed.ac.uk" }]
-license: "CC-BY-SA-NC-4.0"
+license: "CC-BY-SA-4.0"
 webpage: "http://statmt.org/bergamot/models/scripts/csen/"
 description: "English-Czech Basic Transformer Student Model"
