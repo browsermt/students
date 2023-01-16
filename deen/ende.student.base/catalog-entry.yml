@@ -1,5 +1,5 @@
 name: "bergamot/ende.student.base"
 curator: { name: "Roman Grundkiewicz", contact: "rgrundki@exseed.ed.ac.uk" }
-license: "CC-BY-SA-NC-4.0"
+license: "CC-BY-SA-4.0"
 webpage: "http://statmt.org/bergamot/models/scripts/ende/"
 description: "English-German Basic Transformer Student Model"
