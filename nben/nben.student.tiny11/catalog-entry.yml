@@ -1,5 +1,5 @@
 name: "bergamot/nben.student.tiny11"
 curator: { name: "Jaume Zaragoza", contact: "jzaragoza@prompsit.com" }
-license: "CC-BY-SA-NC-4.0"
+license: "CC-BY-SA-4.0"
 webpage: "http://data.statmt.org/bergamot/models/nben/"
 description: "Norwegian (Bokmal)-English Tiny Transformer Student Model"
