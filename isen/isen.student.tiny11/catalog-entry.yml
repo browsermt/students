@@ -1,5 +1,5 @@
 name: "bergamot/isen.student.tiny11"
-curator: { name: "Jaume Zaragoza", contact: "rgrundki@exseed.ed.ac.uk" }
+curator: { name: "Jaume Zaragoza", contact: "jzaragoza@prompsit.com" }
 license: "CC-BY-SA-4.0"
 webpage: "http://data.statmt.org/bergamot/models/isen/"
 description: "Icelandic-English Tiny Transformer Student Model"
