@@ -1,0 +1,19 @@
+relative-paths: true
+models:
+    - model.intgemm.alphas.bin
+vocabs:
+    - vocab.sqen.spm
+    - vocab.sqen.spm
+shortlist:
+    - lex.s2t.bin
+    - false
+beam-size: 1
+normalize: 1.0
+word-penalty: 0
+mini-batch: 16
+maxi-batch: 1000
+maxi-batch-sort: src
+workspace: 256
+max-length-factor: 2.0
+skip-cost: true
+gemm-precision: int8shiftAlphaAll
