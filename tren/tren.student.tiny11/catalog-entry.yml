@@ -1,0 +1,5 @@
+name: "bergamot/tren.student.tiny11"
+curator: { name: "Jaume Zaragoza", contact: "jzaragoza@prompsit.com" }
+license: "CC-BY-SA-4.0"
+webpage: "http://data.statmt.org/bergamot/models/tren/"
+description: "Turkish-English Tiny Transformer Student Model"
