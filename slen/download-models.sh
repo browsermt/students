@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for pair in sleslen; do
+for pair in slen; do
     wget -nc -P $pair.teacher.base/ http://data.statmt.org/bergamot/models/$pair/$pair.teacher.base/model.npz
     wget -nc -P $pair.teacher.base/ http://data.statmt.org/bergamot/models/$pair/$pair.teacher.base/vocab.$pair.spm
 
