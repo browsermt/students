@@ -1,0 +1,5 @@
+name: "bergamot/slen.student.tiny11"
+curator: { name: "Jaume Zaragoza", contact: "jzaragoza@prompsit.com" }
+license: "CC-BY-SA-NC-4.0"
+webpage: "http://data.statmt.org/bergamot/models/slen/"
+description: "Slovene-English Tiny Transformer Student Model"
