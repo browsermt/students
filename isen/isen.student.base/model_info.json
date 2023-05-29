@@ -1,7 +1,7 @@
 {
-  "modelName": "Icelandic-English tiny",
-  "shortName": "is-en-tiny",
-  "type":      "tiny",
+  "modelName": "Icelandic-English base",
+  "shortName": "is-en-base",
+  "type":      "base",
   "src":       "Icelandic",
   "trg":       "English",
   "version":   2.0,

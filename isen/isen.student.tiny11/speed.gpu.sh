@@ -1,6 +1,6 @@
 #!/bin/bash -v
 
-MARIAN=../../../marian-dev/build
+MARIAN=../../marian-cpu/build
 
 SRC=is
 TRG=en
@@ -10,7 +10,7 @@ mkdir -p speed
 # Custom test sets.
 DATA=../data
 
-for prefix in ted-test; do
+for prefix in wmt21; do
     echo "### Translating $prefix $SRC-$TRG"
     cat $DATA/$prefix.$SRC \
         | tee speed/$prefix.$SRC \
