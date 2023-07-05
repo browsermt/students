@@ -1,9 +1,9 @@
 {
-  "modelName": "Icelandic-English tiny",
-  "shortName": "is-en-tiny",
+  "modelName": "Ukrainian-English tiny",
+  "shortName": "uk-en-tiny",
   "type":      "tiny",
-  "src":       "Icelandic",
+  "src":       "Ukrainian",
   "trg":       "English",
-  "version":   2.0,
+  "version":   1.0,
   "API":       1.0
 }
