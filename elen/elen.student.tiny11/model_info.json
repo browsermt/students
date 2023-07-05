@@ -1,0 +1,9 @@
+{
+  "modelName": "Greek-English tiny",
+  "shortName": "el-en-tiny",
+  "type":      "tiny",
+  "src":       "Greek",
+  "trg":       "English",
+  "version":   2.0,
+  "API":       1.0
+}
