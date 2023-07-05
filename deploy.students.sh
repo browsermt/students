@@ -14,7 +14,7 @@ done
 
 # Deploy student models
 rm -rf models.json # Remove old generated models
-for language in cs de es et is nb nn bg pl fr is hbs mk mt tr sq ca el uk; do
+for language in cs de es et is nb nn bg pl fr is hbs sl mk mt tr sq ca el uk; do
   if [[ ${#language} -eq 3 ]]; then
     eng=eng
   else
