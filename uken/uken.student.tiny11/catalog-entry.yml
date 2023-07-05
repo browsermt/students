@@ -1,0 +1,5 @@
+name: "bergamot/uken.student.tiny11"
+curator: { name: "Alicia Núñez", contact: "anunez@prompsit.com" }
+license: "CC-BY-SA-4.0"
+webpage: "http://data.statmt.org/bergamot/models/uken/"
+description: "Ukrainian-English Tiny Transformer Student Model"
