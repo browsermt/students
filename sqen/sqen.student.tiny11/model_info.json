@@ -1,0 +1,9 @@
+{
+  "modelName": "Albanian-English tiny",
+  "shortName": "sq-en-tiny",
+  "type":      "tiny",
+  "src":       "Albanian",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}
