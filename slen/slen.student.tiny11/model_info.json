@@ -1,0 +1,9 @@
+{
+  "modelName": "Slovene-English tiny",
+  "shortName": "sl-en-tiny",
+  "type":      "tiny",
+  "src":       "Slovene",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}

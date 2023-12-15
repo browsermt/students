@@ -1,0 +1,9 @@
+{
+  "modelName": "Catalan-English tiny",
+  "shortName": "ca-en-tiny",
+  "type":      "tiny",
+  "src":       "Catalan",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}

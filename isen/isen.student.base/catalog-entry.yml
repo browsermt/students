@@ -1,0 +1,5 @@
+name: "bergamot/isen.student.base"
+curator: { name: "Jaume Zaragoza", contact: "jzaragoza@prompsit.com" }
+license: "CC-BY-SA-4.0"
+webpage: "http://data.statmt.org/bergamot/models/isen/"
+description: "Icelandic-English Base Transformer Student Model"

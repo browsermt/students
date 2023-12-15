@@ -1,0 +1,9 @@
+{
+  "modelName": "Maltese-English tiny",
+  "shortName": "mt-en-tiny",
+  "type":      "tiny",
+  "src":       "Maltese",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}

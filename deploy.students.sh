@@ -14,10 +14,15 @@ done
 
 # Deploy student models
 rm -rf models.json # Remove old generated models
-for language in cs de es et is nb nn bg pl fr; do
-  dir=${language}en
+for language in cs de es et is nb nn bg pl fr is hbs sl mk mt tr sq ca el uk; do
+  if [[ ${#language} -eq 3 ]]; then
+    eng=eng
+  else
+    eng=en
+  fi
+  dir=${language}$eng
   cd $dir
-  for pair in ${language}en en${language}; do
+  for pair in ${language}$eng $eng${language}; do
     for type in base tiny11; do
       student_model=$pair.student.$type
       if [ -d $student_model ]

@@ -1,0 +1,13 @@
+relative-paths: true
+models:
+  - model.npz
+vocabs:
+  - vocab.tren.spm
+  - vocab.tren.spm
+beam-size: 1
+normalize: 1
+word-penalty: 0
+mini-batch: 32
+maxi-batch: 100
+maxi-batch-sort: src
+workspace: 6000

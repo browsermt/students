@@ -1,0 +1,9 @@
+{
+  "modelName": "Macedonian-English tiny",
+  "shortName": "mk-en-tiny",
+  "type":      "tiny",
+  "src":       "Macedonian",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}

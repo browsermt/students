@@ -1,0 +1,9 @@
+{
+  "modelName": "Icelandic-English base",
+  "shortName": "is-en-base",
+  "type":      "base",
+  "src":       "Icelandic",
+  "trg":       "English",
+  "version":   2.0,
+  "API":       1.0
+}

@@ -1,0 +1,9 @@
+{
+  "modelName": "SerboCroatian-English tiny",
+  "shortName": "hbs-eng-tiny",
+  "type":      "tiny",
+  "src":       "Serbo-Croatian",
+  "trg":       "English",
+  "version":   1.0,
+  "API":       1.0
+}
