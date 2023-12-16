@@ -31,9 +31,13 @@ for language in cs de es et is nb nn bg pl fr is hbs sl mk mt tr sq ca el uk; do
         echo "Deploying $student_model"
         rm -rf $student_model.tar.gz # Remove old model if it exists
         tar -czvf $student_model.tar.gz --transform "s,^,${student_model}/," config.intgemm8bitalpha.yml model.intgemm.alphas.bin speed.cpu.intgemm8bitalpha.sh lex.s2t.bin vocab.$dir.spm catalog-entry.yml model_info.json --owner=0 --group=0
-        scp $student_model.tar.gz $USER@lofn:/mnt/vali0/www/data.statmt.org/bergamot/models/$dir
+        hash=`sha256sum $student_model.tar.gz | cut -c 1-16`
+        version=`jq -r .version model_info.json`
+        frozen_archive=$student_model.v$version.$hash.tar.gz
+        mv $student_model.tar.gz $frozen_archive
+        scp $frozen_archive $USER@lofn:/mnt/vali0/www/data.statmt.org/bergamot/models/$dir
         cd ..
-        ../generate_models_json.py ../models.json $student_model/$student_model.tar.gz $student_model $dir $URLBASE
+        ../generate_models_json.py ../models.json $student_model/$frozen_archive $student_model $dir $URLBASE
       fi
     done
   done
